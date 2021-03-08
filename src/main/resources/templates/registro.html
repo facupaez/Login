@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!--META-->
+        <meta charset="UTF-8"/>
+        <title>Registro Template</title>
+
+        <!--STYLESHEETS-->  
+        <link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}"/>
+
+        <!--SCRIPTS-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+        <script src="js/funciones.js"></script>
+
+    </head>
+    <body>
+
+        <!--WRAPPER-->
+        <div id="wrapper" style="margin-left: -220px;">
+
+            <!--LOGIN FORM-->
+            <form name="register-form" class="login-form" style="margin-top: -110px; width: 430px;" th:action="@{/registroUsuario}" method="post">
+
+                <!--HEADER-->
+                <div class="header">
+                    <h1>Formulario de registro.</h1>
+                    <span>Complete el formulario a continuación para registrar su usuario en el sitema.</span>
+                </div>
+
+                <!--CONTENT-->
+                <div class="content">
+                    <input name="nombre" type="text" class="input" placeholder="Nombre" style="width: 80%;" required=""/>
+                    <input name="apellido" type="text" class="input lastname" placeholder="Apellido" style="width: 80%;" required=""/>
+                    <input name="email" type="email" class="input email" placeholder="Email" style="width: 80%;" required=""/>
+                    <input name="password" type="password" class="input password" placeholder="Password" style="width: 80%;" required=""/>
+                </div>
+
+                <!--FOOTER-->
+                <div class="footer">
+                    <input type="submit" value="Registrarme" class="button" />
+                    <a th:href="login.html" class="register">Ya tienes una cuenta?</a>
+                </div>
+
+            </form>
+            <!--END LOGIN FORM-->
+
+        </div>
+        <!--END WRAPPER-->
+
+        <!--GRADIENT-->
+        <div class="gradient"></div>
+
+    </body>
+
+</html>
