@@ -1,10 +1,10 @@
-package com.solosoftware.PruebaLogin;
+package com.solosoftware.Login;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PruebaLoginApplicationTests {
+class LoginApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,36 +1,21 @@
 package com.solosoftware.Login.entidad;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "usuario")
-public class Usuario implements Serializable {
-
+@Table(name="rol")
+public class Rol implements Serializable{
+    
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idUsuario;
-
+    Long idRol;
+    
     @NotEmpty
     String nombre;
-
-    @NotEmpty
-    String apellido;
-
-    @NotEmpty
-    String email;
-
-    @NotEmpty
-    String password;
-
-    @OneToMany
-    @JoinColumn(name = "id_usuario")
-    private List<Rol> roles;
-
 }
