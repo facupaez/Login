@@ -168,7 +168,7 @@ CONTENT
 }
 
 /* Second input field */
-.login-form .content .password, .login-form .content .lastname, .login-form .content .email, .login-form .content .pass-icon {
+.login-form .content .password, .login-form .content .lastname, .login-form .content .email, .login-form .content .select, .login-form .content .pass-icon {
     margin-top: 25px;
 }
 

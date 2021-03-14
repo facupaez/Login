@@ -19,8 +19,8 @@
         <!--WRAPPER-->
         <div id="wrapper" style="margin-left: -220px;">
 
-            <!--LOGIN FORM-->
-            <form name="register-form" class="login-form" style="margin-top: -110px; width: 430px;" th:action="@{/registroUsuario}" method="post">
+            <!--LOGIN FORM name="register-form"-->
+            <form class="login-form" style="margin-top: -150px; width: 430px;" th:object="${registroUsuario}" th:action="@{/registro}" method="post">
 
                 <!--HEADER-->
                 <div class="header">
@@ -30,16 +30,23 @@
 
                 <!--CONTENT-->
                 <div class="content">
-                    <input name="nombre" type="text" class="input" placeholder="Nombre" style="width: 80%;" required=""/>
-                    <input name="apellido" type="text" class="input lastname" placeholder="Apellido" style="width: 80%;" required=""/>
-                    <input name="email" type="email" class="input email" placeholder="Email" style="width: 80%;" required=""/>
-                    <input name="password" type="password" class="input password" placeholder="Password" style="width: 80%;" required=""/>
+                    <input name="nombre" type="text" th:field="${registroUsuario.nombre}" class="input" placeholder="Nombre" style="width: 80%;" required=""/>
+                    <input name="apellido" type="text" th:field="${registroUsuario.apellido}" class="input lastname" placeholder="Apellido" style="width: 80%;" required=""/>
+                    <input name="email" type="email" th:field="${registroUsuario.email}" class="input email" placeholder="Email" style="width: 80%;" required=""/>
+                    <div>
+                        <select th:field="${registroUsuario.roles}" class="input select" style="width: 94%; color: grey;">
+                            <option value="">Selecciona un rol</option>
+                            <option th:each="rol :${roles}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                        </select>
+                    </div>
+                    <input name="password" type="password" th:field="${registroUsuario.password}" class="input password" placeholder="Password" style="width: 80%;" required=""/>
+                    <input name="confirmaPassword" type="password" th:field="${registroUsuario.confirmaPassword}" class="input password" placeholder="Confirma Password" style="width: 80%;" required=""/>
                 </div>
 
                 <!--FOOTER-->
                 <div class="footer">
                     <input type="submit" value="Registrarme" class="button" />
-                    <a th:href="login.html" class="register">Ya tienes una cuenta?</a>
+                    <a th:href="login" class="register">Ya tienes una cuenta?</a>
                 </div>
 
             </form>

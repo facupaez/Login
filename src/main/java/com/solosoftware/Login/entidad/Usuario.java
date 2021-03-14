@@ -15,7 +15,7 @@ public class Usuario implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idUsuario;
+    Long idUsuario;
 
     @NotEmpty
     String nombre;
@@ -29,8 +29,11 @@ public class Usuario implements Serializable {
     @NotEmpty
     String password;
 
+    @Transient
+    String confirmaPassword;
+
     @OneToMany
-    @JoinColumn(name = "id_usuario")
-    private List<Rol> roles;
+    @JoinColumn(name = "idUsuario")
+    List<Rol> roles;
 
 }
