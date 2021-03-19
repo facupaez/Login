@@ -47,13 +47,16 @@
                 <!--HEADER-->
                 <div class="header">
                     <h1>Iniciar Sesión</h1>
-                    <span>Complete el formulario a continuación para iniciar sesión.</span>
+                    <label class="label">Complete el formulario a continuación para iniciar sesión.</label>
                 </div>
 
                 <!--CONTENT-->
                 <div class="content">
                     <input name="username" type="text" class="input username" placeholder="Usuario" required="" onfocus="this.value = ''" />
-                    <input name="password" type="password" class="input password" placeholder="Password" required="" onfocus="this.value = ''" />
+                    <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>-->
+                    <input name="password" type="password" class="input password" placeholder="Password" required=""  onfocus="this.value = ''" />
+                    <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>-->
+
                 </div>
 
                 <!--FOOTER-->
@@ -71,7 +74,7 @@
             <div th:if="${param.logout}" class="" role="alert">
                 Te has desloggeado con éxito.
             </div>
-            
+
         </div>
         <!--END WRAPPER-->
 

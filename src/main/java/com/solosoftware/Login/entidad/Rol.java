@@ -1,6 +1,7 @@
 package com.solosoftware.Login.entidad;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -14,11 +15,12 @@ public class Rol implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idRol;
+    private Long idRol;
     
     @NotEmpty
-    String nombre;
+    private String nombre;
     
     @NotEmpty
-    Long idUsuario;
+    private String descripcion;
+    
 }

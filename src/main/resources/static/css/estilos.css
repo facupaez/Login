@@ -304,3 +304,26 @@ FOOTER
     position: relative;
     bottom: -1px;
 }
+
+
+.alert {
+    position: relative;
+    width: 343px;
+    height: 20px;
+    padding: 1px 1px;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    font-size: 15px;
+}
+
+.label{
+    font-size: 12px;
+    color: #3f9db8;
+}

@@ -6,4 +6,6 @@ import java.util.List;
 public interface UsuarioService {
     
     public List<Usuario> getAllUsers();
+
+    public Usuario crearUsuario(Usuario usuario) throws Exception;
 }
