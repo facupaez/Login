@@ -3,6 +3,7 @@ package com.solosoftware.Login.web;
 import com.solosoftware.Login.dao.RolDao;
 import com.solosoftware.Login.entidad.Usuario;
 import com.solosoftware.Login.servicio.UsuarioService;
+import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,10 +40,12 @@ public class ControladorWeb {
 
     //metodo validaciones spring
     @PostMapping("/registro")
-    
-    public String validarUsuario(@Validated @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
+    public String validarUsuario(@Valid @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
+            // si hay errores devolvemos los datos ingresados
             model.addAttribute("registroUsuario", usuario);
+            model.addAttribute("roles", rolDao.findAll());
+            return "registro";
         } else {
             try {
                 usuarioService.crearUsuario(usuario);
@@ -50,16 +53,18 @@ public class ControladorWeb {
                 model.addAttribute("formErrorMessage", ex.getMessage());
                 model.addAttribute("registroUsuario", usuario);
                 model.addAttribute("roles", rolDao.findAll());
+                return "registro";
             }
         }
 
+        // mostramos la lista de roles
         model.addAttribute("roles", rolDao.findAll());
         return "login";
     }
 
-    //href
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
+//    //href
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
 }

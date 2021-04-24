@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-
+    
     @Size(min = 3, max = 15, message = "El nombre debe tener más de 3 carácteres")
     private String nombre;
 

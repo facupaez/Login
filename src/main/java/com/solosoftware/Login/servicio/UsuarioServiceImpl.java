@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     private boolean checkEmailDisponible(Usuario usuario) throws Exception {
         Optional<Usuario> emailCheck = usuarioDao.findByEmail(usuario.getEmail());
         if (emailCheck.isPresent()) {
-            throw new Exception("Email en uso");
+            throw new Exception("Email no disponible");
         }
         return true;
     }
