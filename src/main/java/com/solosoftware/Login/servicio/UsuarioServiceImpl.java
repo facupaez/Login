@@ -15,7 +15,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Autowired
     UsuarioDao usuarioDao;
 
-    //creamos lista de tipos de usuario
+    //creamos lista de usuario
     @Override
     public List<Usuario> getAllUsers() {
         return usuarioDao.findAll();

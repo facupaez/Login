@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -27,6 +26,12 @@ public class ControladorWeb {
     @GetMapping("/")
     public String inicio() {
         return "login";
+    }
+
+    @GetMapping("/index")
+    public String listaUsuarios(Model model) {
+         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
+        return "index";
     }
 
     //href
