@@ -13,6 +13,10 @@
         <!--SCRIPTS--> 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
+        <!-- Los iconos tipo Solid de Fontawesome-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css"/>
+        <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
         <!-- DATA TABLE -->
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
@@ -30,41 +34,43 @@
         <section>  
             <div class="container">
                 <div class="row my-5 d-flex justify-content-start">       
-                    <div class=row>
+                    <div class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4>Listado de Usuarios</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div th:if="${listaUsuarios != null and !listaUsuarios.empty}">
-                                        <table id="listaUsuarios" class="table table-bordered table-hover table-striped">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Nombre</th>
-                                                    <th scope="col">Apellido</th>
-                                                    <th scope="col">E-mail</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr th:each="usuario : ${listaUsuarios}">
-                                                    <td th:text="${usuario.idUsuario}"></td>
-                                                    <td th:text="${usuario.nombre}"></td>
-                                                    <td th:text="${usuario.apellido}"></td>
-                                                    <td th:text="${usuario.email}"></td>
-                                                    <td>
-                                                        <!--<span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
-                                                        </span>-->
-                                                        <a href="#" th:href="@{'/editarUsuario/'+ ${usuario.idUsuario}}"><i class="fas fa-edit"></i>Editar</a>
-                                                        | <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${usuario.idUsuario} +'\');'"><i class="fas fa-user-times"></i>Eliminar</a>
+                                    <div class="table-responsive">
+                                        <div th:if="${listaUsuarios != null and !listaUsuarios.empty}">
+                                            <table id="listaUsuarios" class="table table-bordered table-hover table-striped">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Nombre</th>
+                                                        <th scope="col">Apellido</th>
+                                                        <th scope="col">E-mail</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="usuario : ${listaUsuarios}">
+                                                        <td th:text="${usuario.idUsuario}"></td>
+                                                        <td th:text="${usuario.nombre}"></td>
+                                                        <td th:text="${usuario.apellido}"></td>
+                                                        <td th:text="${usuario.email}"></td>
+                                                        <td><div class="text-center">
+                                                                <!--<span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
+                                                                </span>-->
+                                                                <a href="#" th:href="@{'/editarUsuario/'+ ${usuario.idUsuario}}" class="btn btn-success">Editar <i class="fas fa-edit"></i></a> 
+                                                                | <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${usuario.idUsuario} +'\');'" class="btn btn-danger">Eliminar <i class="fas fa-user-times"></i></a>
+                                                            </div></td>
                                                         <!--<span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" >
-                                                        </span>-->
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                                           </span>-->
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
