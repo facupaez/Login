@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     UsuarioDao usuarioDao;
+    
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //creamos lista de usuario
     @Override
@@ -42,6 +46,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario crearUsuario(Usuario usuario) throws Exception {
         if (checkEmailDisponible(usuario) && checkConfirmaPassword(usuario)) {
+            
+            //encriptamos password
+            String encodePassword = bCryptPasswordEncoder.encode(usuario.getPassword());
+            usuario.setPassword(encodePassword);
+            
+            //guardamos usuario
             usuario = usuarioDao.save(usuario);
         }
         return usuario;

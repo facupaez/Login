@@ -6,11 +6,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+//Indica que esta clase es de configuracion y necesita ser cargada durante el inicio del server
 @Configuration
+//Indica que esta clase sobreescribira la implmentacion de seguridad web
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     //Necesario para evitar que la seguridad se aplique a los resources
     //Como los css, imagenes y javascripts
@@ -20,20 +23,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 .antMatchers(resources).permitAll()
-                .antMatchers("/", "login").permitAll()
+                .antMatchers("/", "/login", "/registro").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .permitAll()
                 .defaultSuccessUrl("/index")
                 .failureUrl("/login?error=true")
-                .usernameParameter("username")
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .and()
-                .exceptionHandling()
-                .accessDeniedPage("/errores/403")
-                .and()
+                .csrf().disable()
                 .logout()
                 .permitAll()
                 .logoutSuccessUrl("/login?logout");
@@ -52,8 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return bCryptPasswordEncoder;
     }
 
-//    @Autowired
-//    UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    UserDetailsService userDetailsService;
 
     //Registra el service para usuarios y el encriptador de contrasena
     @Autowired
@@ -61,6 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Setting Service to find User in the database.
         // And Setting PassswordEncoder
-       // auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 }

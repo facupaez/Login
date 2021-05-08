@@ -22,15 +22,14 @@ public class ControladorWeb {
     @Autowired
     RolDao rolDao;
 
-    //load page
-    @GetMapping("/")
-    public String inicio() {
+    @GetMapping({"/","/login"})
+    public String loadPage() {
         return "login";
     }
 
     @GetMapping("/index")
     public String listaUsuarios(Model model) {
-         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
+        model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
         return "index";
     }
 
@@ -66,10 +65,4 @@ public class ControladorWeb {
         model.addAttribute("roles", rolDao.findAll());
         return "login";
     }
-
-//    //href
-//    @GetMapping("/login")
-//    public String login() {
-//        return "login";
-//    }
 }

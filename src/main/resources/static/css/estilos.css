@@ -143,6 +143,7 @@ HEADER
 CONTENT
 *******************/
 
+
 .login-form .content {
     padding: 0 30px 25px 30px;
 }
@@ -306,7 +307,7 @@ FOOTER
 }
 
 
-.alert {
+.alert-danger-registro {
     position: relative;
     width: 343px;
     height: 20px;
@@ -314,13 +315,32 @@ FOOTER
     margin-bottom: 1rem;
     border: 1px solid transparent;
     border-radius: 0.25rem;
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    font-size: 15px;
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    width: 298px;
 }
 
 .alert-danger {
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
-    font-size: 15px;
+    width: 298px;
 }
 
 .label{

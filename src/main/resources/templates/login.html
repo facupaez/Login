@@ -34,49 +34,54 @@
     </head>
     <body>
 
-        <!--WRAPPER-->
-        <div id="wrapper">
+        <section>
+            <!--WRAPPER-->
+            <div id="wrapper">
 
-            <!--SLIDE-IN ICONS-->
-            <div class="user-icon"></div>
-            <div class="pass-icon"></div>
+                <!--SLIDE-IN ICONS-->
+                <div class="user-icon"></div>
+                <div class="pass-icon"></div>
 
-            <!--LOGIN FORM-->
-            <form name="login-form" class="login-form" th:action="@{/login}" method="POST">
+                <!--LOGIN FORM-->
+                <form name="login-form" class="login-form" th:action="@{/login}" method="post">
 
-                <!--HEADER-->
-                <div class="header">
-                    <h1>Iniciar Sesión</h1>
-                    <label class="label">Complete el formulario a continuación para iniciar sesión.</label>
+                    <!--HEADER-->
+                    <div class="header">
+                        <h1>Iniciar Sesión</h1>
+                        <label class="label">Complete el formulario a continuación para iniciar sesión.</label>
+                    </div>
+
+                    <!--CONTENT-->
+                    <div class="content">
+                        <input name="email" type="text" class="input username" placeholder="Email " required="" onfocus="this.value = ''" />
+                        <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>-->
+                        <input name="password" type="password" class="input password" placeholder="Password" required=""  onfocus="this.value = ''" />
+                        <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>-->
+
+                    </div>
+
+                    <!--FOOTER-->
+                    <div class="footer">
+                        <input type="submit" value="Ingresar" class="button" />
+                        <a th:href="registro" class="register">Registrarme</a>
+                    </div>
+
+                </form>
+                <!--END LOGIN FORM-->
+
+                <!--ERROR MESSAGES-->
+                <div>
+                    <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                        Usuario o contraseña inválido.
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                        Has cerrado sesión con éxito.
+                    </div>
                 </div>
 
-                <!--CONTENT-->
-                <div class="content">
-                    <input name="username" type="text" class="input username" placeholder="Email " required="" onfocus="this.value = ''" />
-                    <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>-->
-                    <input name="password" type="password" class="input password" placeholder="Password" required=""  onfocus="this.value = ''" />
-                    <!--<div class="alert alert-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div>-->
-
-                </div>
-
-                <!--FOOTER-->
-                <div class="footer">
-                    <input type="submit" value="Ingresar" class="button" />
-                    <a th:href="registro" class="register">Registrarme</a>
-                </div>
-            </form>
-            <!--END LOGIN FORM-->
-
-            <!--ERROR MESSAGES-->
-            <div th:if="${param.error}" class="" role="alert">
-                Usuario o contraseña inválido.
             </div>
-            <div th:if="${param.logout}" class="" role="alert">
-                Te has desloggeado con éxito.
-            </div>
-
-        </div>
-        <!--END WRAPPER-->
+            <!--END WRAPPER-->
+        </section>
 
         <!--GRADIENT-->
         <div class="gradient"></div>

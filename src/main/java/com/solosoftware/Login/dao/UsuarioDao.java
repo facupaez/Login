@@ -8,7 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UsuarioDao extends JpaRepository<Usuario, Long>{
     
-    
-    
     public Optional<Usuario> findByEmail(String email);
 }

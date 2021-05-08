@@ -17,20 +17,20 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
     
-    @Size(min = 3, max = 15, message = "El nombre debe tener más de 3 carácteres")
+    @Size(min = 4, max = 15, message = "El nombre debe tener más de 3 carácteres")
     private String nombre;
 
-    @Size(min = 3, max = 15, message = "El apellido debe tener más de 3 carácteres")
+    @Size(min = 4, max = 15, message = "El apellido debe tener más de 3 carácteres")
     private String apellido;
 
     @Email(message = "Email inválido")
     @NotEmpty(message = "Completa este campo")
     private String email;
 
-    @Size(min = 3, message = "La contraseña debe tener más de 3 carácteres")
+    @Size(min = 4, message = "La contraseña debe tener más de 3 carácteres")
     private String password;
 
-    @Size(min = 3, message = "La contraseña debe tener más de 3 carácteres")
+    @Size(min = 4, message = "La contraseña debe tener más de 3 carácteres")
     @Transient
     private String confirmaPassword;
 
