@@ -22,7 +22,7 @@ public class ControladorWeb {
     @Autowired
     RolDao rolDao;
 
-    @GetMapping({"/","/login"})
+    @GetMapping({"/", "/login"})
     public String loadPage() {
         return "login";
     }
@@ -33,7 +33,6 @@ public class ControladorWeb {
         return "index";
     }
 
-    //href
     @GetMapping("/registro")
     public String registro(Model model) {
         model.addAttribute("registroUsuario", new Usuario());
@@ -64,5 +63,17 @@ public class ControladorWeb {
         // mostramos la lista de roles
         model.addAttribute("roles", rolDao.findAll());
         return "login";
+    }
+
+    // eliminar usuario
+    @GetMapping("/eliminarUsuario/{idUsuario}")
+    public String eliminarUsuario(Model model, @PathVariable(name = "idUsuario") Long idUsuario) {
+        try {
+            usuarioService.eliminarUsuario(idUsuario);
+        } catch (Exception e) {
+            model.addAttribute("listErrorMessage", e.getMessage());
+        } 
+        //retornamos getmapping index(lista)
+        return "redirect:/index";
     }
 }

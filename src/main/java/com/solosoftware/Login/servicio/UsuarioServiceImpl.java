@@ -15,7 +15,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     UsuarioDao usuarioDao;
-    
+
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -46,14 +46,28 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario crearUsuario(Usuario usuario) throws Exception {
         if (checkEmailDisponible(usuario) && checkConfirmaPassword(usuario)) {
-            
+
             //encriptamos password
             String encodePassword = bCryptPasswordEncoder.encode(usuario.getPassword());
             usuario.setPassword(encodePassword);
-            
+
             //guardamos usuario
             usuario = usuarioDao.save(usuario);
         }
         return usuario;
     }
+
+    // metodo para buscar id del usuario
+    @Override
+    public Usuario getUsuarioById(Long idUsuario) throws Exception {
+        return usuarioDao.findById(idUsuario).orElseThrow(() -> new Exception("El usuario no existe."));
+    }
+
+    @Override
+    public void eliminarUsuario(Long idUsuario) throws Exception {
+        Usuario usuario = getUsuarioById(idUsuario);
+        
+        usuarioDao.delete(usuario);
+    }
+
 }

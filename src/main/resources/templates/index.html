@@ -57,12 +57,14 @@
                                                                 <a href="#" th:href="@{'/editarUsuario/'+ ${usuario.idUsuario}}" class="btn btn-success">Editar <i class="fas fa-edit"></i></a>
                                                             </span>                                                                
                                                             <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
-                                                                <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${usuario.idUsuario} +'\');'" class="btn btn-danger">Eliminar <i class="fas fa-user-times"></i></a>
+                                                                <a href="#" th:onclick="'javascript:confirmaEliminar(\''+ ${usuario.idUsuario} +'\');'" class="btn btn-danger">Eliminar <i class="fas fa-user-times"></i></a>
                                                             </span>
                                                         </div></td>
                                                 </tr>
                                             </tbody>
                                         </table>
+                                        <div style="text-align: center;" class="alert-danger" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
+
                                         <br/>
                                         <a href="#" th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
                                     </div>
@@ -72,20 +74,9 @@
                     </div> 
                 </div>
             </div>
-            <div class="alert alert-danger text-center" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error MEssage</div>
         </section>
 
-        <!--<script type="text/javascript">
-           function confirmDelete(id) {
-               $('#deleteModal').modal('show');
-               $("#userIdHiddenInput").val(id);
-           }
-
-           function deleteUser() {
-               var id = $("#userIdHiddenInput").val();
-               window.location = "deleteUser/" + id;
-           }
-       </script>-->
+        <div th:include="confirma-eliminar-dialog.html" th:remove="tag"></div>
 
         <!-- JQuery, Popper.js, Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" crossorigin="anonymous"></script>

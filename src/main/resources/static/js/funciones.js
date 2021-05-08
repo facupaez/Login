@@ -18,3 +18,17 @@ $(document).ready(function () {
         }
     });
 });
+
+function confirmaEliminar(idUsuario) {
+    $('#deleteModal').modal('show');
+    $("#userIdHiddenInput").val(idUsuario);
+}
+
+function eliminarUsuario() {
+    var idUsuario = $("#userIdHiddenInput").val();
+    window.location = "eliminarUsuario/" + idUsuario;
+}
+
+function cerrarModal() {
+    $('#deleteModal').modal('hide');
+}
