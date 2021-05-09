@@ -1,16 +1,16 @@
-package com.solosoftware.Login.web;
-
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.*;
-
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
-
-    @Override
-    public void addViewControllers(ViewControllerRegistry registro) {
-        registro.addViewController("/").setViewName("index");
-        registro.addViewController("/login");
-        registro.addViewController("/errores/403").setViewName("/errores/403");
-    }
-
-}
+//package com.solosoftware.Login.web;
+//
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.web.servlet.config.annotation.*;
+//
+//@Configuration
+//public class WebConfig implements WebMvcConfigurer {
+//
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registro) {
+//        registro.addViewController("/").setViewName("index");
+//        registro.addViewController("/login");
+//        registro.addViewController("/errores/403").setViewName("/errores/403");
+//    }
+//
+//}

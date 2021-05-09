@@ -72,7 +72,7 @@ public class ControladorWeb {
             usuarioService.eliminarUsuario(idUsuario);
         } catch (Exception e) {
             model.addAttribute("listErrorMessage", e.getMessage());
-        } 
+        }
         //retornamos getmapping index(lista)
         return "redirect:/index";
     }

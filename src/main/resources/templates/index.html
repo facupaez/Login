@@ -21,7 +21,6 @@
 
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css"/>
 
-
     </head>
     <body>
         <section>  
@@ -59,7 +58,8 @@
                                                             <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
                                                                 <a href="#" th:onclick="'javascript:confirmaEliminar(\''+ ${usuario.idUsuario} +'\');'" class="btn btn-danger">Eliminar <i class="fas fa-user-times"></i></a>
                                                             </span>
-                                                        </div></td>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -64,9 +65,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public void eliminarUsuario(Long idUsuario) throws Exception {
+       
         Usuario usuario = getUsuarioById(idUsuario);
-        
         usuarioDao.delete(usuario);
     }
 
