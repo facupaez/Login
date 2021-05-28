@@ -1,7 +1,7 @@
 package com.solosoftware.Login.entidad;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    
+
     @Size(min = 4, max = 15, message = "El nombre debe tener más de 3 carácteres")
     private String nombre;
 
@@ -24,7 +24,7 @@ public class Usuario implements Serializable {
     private String apellido;
 
     @Email(message = "Email inválido")
-    @NotEmpty(message = "Completa este campo")
+    //@NotEmpty(message = "Completa este campo")
     private String email;
 
     @Size(min = 4, message = "La contraseña debe tener más de 3 carácteres")
@@ -36,8 +36,8 @@ public class Usuario implements Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_roles",
-            joinColumns = @JoinColumn(name = "idUsuario"),
-            inverseJoinColumns = @JoinColumn(name = "idRol"))
-    private List<Rol> roles;
+             joinColumns = @JoinColumn(name = "idUsuario"),
+             inverseJoinColumns = @JoinColumn(name = "idRol"))
+    private Set roles;
 
-    }
+}

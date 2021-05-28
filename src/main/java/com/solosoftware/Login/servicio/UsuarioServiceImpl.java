@@ -64,12 +64,29 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioDao.findById(idUsuario).orElseThrow(() -> new Exception("El usuario no existe."));
     }
 
+    //metodo eliminar usuario
     @Override
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     public void eliminarUsuario(Long idUsuario) throws Exception {
-       
+
         Usuario usuario = getUsuarioById(idUsuario);
         usuarioDao.delete(usuario);
+    }
+
+    //metodo editar usuario
+    @Override
+    public Usuario editarUsuario(Usuario fromUser) throws Exception {
+        Usuario toUser = getUsuarioById(fromUser.getIdUsuario());
+        mapUser(fromUser, toUser);
+        return usuarioDao.save(toUser);
+    }
+
+    //Mapeamos todo menos el password.
+    protected void mapUser(Usuario from, Usuario to) {
+        to.setNombre(from.getNombre());
+        to.setApellido(from.getApellido());
+        to.setEmail(from.getEmail());
+        to.setRoles(from.getRoles());
     }
 
 }

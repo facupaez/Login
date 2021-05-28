@@ -15,49 +15,36 @@
         <div id="wrapper" style="margin-left: -220px;">
 
             <!--LOGIN FORM name="register-form"-->
-            <form class="login-form" style="margin-top: -180px; width: 430px;"  th:object="${registroUsuario}" th:action="@{/registro}" method="post">
+            <form class="login-form" style="margin-top: -180px; width: 430px;"  th:object="${editarUsuario}" th:action="@{/editar}" method="post">
 
                 <!--HEADER-->
                 <div class="header">
-                    <h1>Formulario de registro.</h1>
-                    <label class="label">Complete el formulario a continuación para registrar su usuario en el sistema.</label>
+                    <h1>Editar usuario.</h1>
                 </div>
 
                 <!--CONTENT-->
                 <div class="content">
                     <input type="text" th:field="${registroUsuario.nombre}" class="input" placeholder="Nombre" style="width: 80%;"/>
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name Error</div>
 
                     <input type="text" th:field="${registroUsuario.apellido}" class="input lastname" placeholder="Apellido" style="width: 80%;"/>
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Surname Error</div>
 
                     <input type="text" th:field="${registroUsuario.email}" class="input email" placeholder="Email" style="width: 80%;" />
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
                     
                     <div>
                         <select th:field="${registroUsuario.roles}" class="input select" style="width: 94%; color: grey;">
                             <option th:each="rol :${roles}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
                         </select>
                     </div>
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">Role Error</div>
 
                     <input type="password" th:field="${registroUsuario.password}" class="input password" placeholder="Password" style="width: 80%;" />
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
 
                     <input type="password" th:field="${registroUsuario.confirmaPassword}" class="input password" placeholder="Confirma Password" style="width: 80%;" />
-                    <div class="alert-danger-registro" th:if="${#fields.hasErrors('confirmaPassword')}" th:errors="*{confirmaPassword}">ConfirmaPassword Error</div>
 
                 </div>
 
                 <!--ERROR MESSAGE-->
                 <div class="content">
                     <div style="text-align: center;" class="alert-danger-registro" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
-                </div>
-
-                <!--FOOTER-->
-                <div class="footer">
-                    <input type="submit" value="Registrarme" class="button" />
-                    <a th:href="login" class="register">Ya tienes una cuenta?</a>
                 </div>
 
             </form>

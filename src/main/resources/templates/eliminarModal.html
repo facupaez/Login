@@ -4,17 +4,20 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Eliminar usuario</h5>
-                <button type="button" class="close" th:onclick="cerrarModal()" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             <div class="modal-body">
-                Estas seguro que quieres eliminar este usuario?
-                <input type="hidden" id="userIdHiddenInput" name="userIdHiddenInput"/>
-
+                <div class="form-group">
+                    <p class="alert alert-danger-delete">
+                        Estás seguro que quieres eliminar este usuario?
+                    </p>
+                    <input type="hidden" id="idUsuarioDelete" name="idUsuario"/>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" th:onclick="cerrarModal()">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" th:onclick="eliminarUsuario()">Eliminar</button>
             </div>
         </div>
