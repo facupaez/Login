@@ -1,6 +1,7 @@
 package com.solosoftware.Login.entidad;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -24,7 +25,7 @@ public class Usuario implements Serializable {
     private String apellido;
 
     @Email(message = "Email inválido")
-    //@NotEmpty(message = "Completa este campo")
+    @NotEmpty(message = "Completa este campo")
     private String email;
 
     @Size(min = 4, message = "La contraseña debe tener más de 3 carácteres")
@@ -38,6 +39,6 @@ public class Usuario implements Serializable {
     @JoinTable(name = "usuario_roles",
              joinColumns = @JoinColumn(name = "idUsuario"),
              inverseJoinColumns = @JoinColumn(name = "idRol"))
-    private Set roles;
+    private Set<Rol> roles = new HashSet();
 
 }

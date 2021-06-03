@@ -1,7 +1,6 @@
 package com.solosoftware.Login.entidad;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;

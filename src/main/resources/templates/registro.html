@@ -36,7 +36,7 @@
                     
                     <div>
                         <select th:field="${registroUsuario.roles}" class="input select" style="width: 94%; color: grey;">
-                            <option th:each="rol :${roles}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                            <option th:each="rol :${rolesLista}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
                         </select>
                     </div>
                     <div class="alert-danger-registro" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}">Role Error</div>

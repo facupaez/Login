@@ -2,7 +2,6 @@ package com.solosoftware.Login.servicio;
 
 import com.solosoftware.Login.dao.UsuarioDao;
 import com.solosoftware.Login.entidad.Usuario;
-import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     //creamos lista de usuario
     @Override
-    public List<Usuario> getAllUsers() {
+    public Iterable<Usuario> getAllUsers() {
         return usuarioDao.findAll();
     }
 
@@ -76,9 +75,14 @@ public class UsuarioServiceImpl implements UsuarioService {
     //metodo editar usuario
     @Override
     public Usuario editarUsuario(Usuario fromUser) throws Exception {
+
         Usuario toUser = getUsuarioById(fromUser.getIdUsuario());
         mapUser(fromUser, toUser);
-        return usuarioDao.save(toUser);
+
+        if (checkEmailDisponible(toUser)) {
+            toUser = usuarioDao.save(toUser);
+        }
+        return toUser;
     }
 
     //Mapeamos todo menos el password.

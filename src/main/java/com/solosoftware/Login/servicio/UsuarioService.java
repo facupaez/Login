@@ -1,11 +1,10 @@
 package com.solosoftware.Login.servicio;
 
 import com.solosoftware.Login.entidad.Usuario;
-import java.util.List;
 
 public interface UsuarioService {
 
-    public List<Usuario> getAllUsers();
+    public Iterable<Usuario> getAllUsers();
 
     public Usuario crearUsuario(Usuario usuario) throws Exception;
 

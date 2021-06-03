@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
-    //cargar jquery data table
+//cargar jquery data table
     $('#listaUsuarios').DataTable({
-        //para cambiar el lenguaje a español
+//para cambiar el lenguaje a español
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
             "zeroRecords": "No se encontraron resultados",
             "info": "Mostrando _TOTAL_ registros",
             "infoEmpty": "Mostrando _TOTAL_ registros",
-            "infoFiltered": "(Registro total: _MAX_)",
+            "infoFiltered": "(Registros totales: _MAX_)",
             "sSearch": "Buscar:",
             "oPaginate": {
                 "sFirst": "Primero",
@@ -19,38 +19,37 @@ $(document).ready(function () {
             "sProcessing": ""
         }
     });
-
     $('.table .editBtn').on('click', function (event) {
 
         event.preventDefault();
         var href = $(this).attr('href');
-        
         $.get(href, function (usuario) {
-            $('.myForm #idUsuarioEdit').val(usuario.idUsuario);
-            $('.myForm #nombreEdit').val(usuario.nombre);
-            $('.myForm #apellidoEdit').val(usuario.apellido);
-            $('.myForm #emailEdit').val(usuario.email);
-            $('.myForm #rolesEdit').val(usuario.idRol);
+
+            $('.myFormEdit #idUsuarioEdit').val(usuario.idUsuario);
+            $('.myFormEdit #nombreEdit').val(usuario.nombre);
+            $('.myFormEdit #apellidoEdit').val(usuario.apellido);
+            $('.myFormEdit #emailEdit').val(usuario.email);
+            $('.myForm #rolesEdit').val('');
+            for (const rol of usuario.roles) {
+                $('.myFormEdit #rolesEdit option[value=' + rol.idRol + ']').prop('selected', 'selected')
+            }
         });
-        $('.myForm #editModal').find('.modal-header').css('background', '#0d6efd');
-        $('.myForm #editModal').find('.modal-header').css('color', 'white');
-        $('.myForm #editModal').find('.close').css('color', 'white');
-        $('.myForm #editModal').modal();
+        $('.myFormEdit #editModal').find('.modal-header').css('background', '#0d6efd');
+        $('.myFormEdit #editModal').find('.modal-header').css('color', 'white');
+        $('.myFormEdit #editModal').find('.close').css('color', 'white');
+        $('.myFormEdit #editModal').modal();
     });
+    $('.table .deleteBtn').on('click', function (event) {
 
+        event.preventDefault();
+        var href = $(this).attr('href');
+        $.get(href, function (usuario) {
+
+            $('.myFormDelete #idUsuarioDelete').val(usuario.idUsuario);
+            $('.myFormDelete #deleteModal').modal();
+        });
+        $('#deleteModal').find('.modal-header').css('background', '#0d6efd');
+        $('#deleteModal').find('.modal-header').css('color', 'white');
+        $('#deleteModal').find('.close').css('color', 'white');
+    });
 });
-
-
-//mostrar modal
-function confirmaEliminar(idUsuario) {
-    $("#idUsuarioDelete").val(idUsuario);
-    $('#deleteModal').find('.modal-header').css('background', '#0d6efd');
-    $('#deleteModal').find('.modal-header').css('color', 'white'); 
-    $('#deleteModal').find('.close').css('color', 'white');
-    $('#deleteModal').modal('show');
-}
-
-function eliminarUsuario() {
-    var idUsuario = $("#idUsuarioDelete").val();
-    window.location = "eliminarUsuario/" + idUsuario;
-}
