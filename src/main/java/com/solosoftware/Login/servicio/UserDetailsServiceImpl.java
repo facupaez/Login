@@ -26,16 +26,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         com.solosoftware.Login.entidad.Usuario appUser = usuarioDao.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Email inválido"));
-        
+
         Set grantList = new HashSet();
-        
-        for(Rol rol : appUser.getRoles()){
+
+        for (Rol rol : appUser.getRoles()) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(rol.getDescripcion());
             grantList.add(grantedAuthority);
         }
-        
-        UserDetails usuario = (UserDetails) new User(email,appUser.getPassword(),grantList);
-        
+
+        UserDetails usuario = (UserDetails) new User(email, appUser.getPassword(), grantList);
+
         return usuario;
     }
 

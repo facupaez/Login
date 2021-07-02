@@ -51,24 +51,23 @@
                                                 <td th:text="${usuario.email}"></td>
                                                 <td><div class="text-center">
                                                         <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
-                                                            <a class="btn btn-success editBtn" th:href="@{editarUsuario/(idUsuario=${usuario.idUsuario})}">Editar <i class="fas fa-edit"></i></a>
-                                                            <!--<a class="btn btn-success editBtn"  th:href="@{'/editarUsuario/'+ ${usuario.idUsuario}}">Editar <i class="fas fa-edit"></i></a>-->
+                                                            <a class="btn btn-success editBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Editar <i class="fas fa-edit"></i></a>
                                                         </span> 
                                                         <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
-                                                            <!--<a class="btn btn-danger" href="#" th:onclick="'javascript:confirmaEliminar(\''+ ${usuario.idUsuario} +'\');'">Eliminar <i class="fas fa-user-times"></i></a>-->
-                                                            <a class="btn btn-danger deleteBtn" th:href="@{eliminarUsuario/(idUsuario=${usuario.idUsuario})}">Eliminar <i class="fas fa-user-times"></i></a>
+                                                            <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Eliminar <i class="fas fa-user-times"></i></a>
                                                         </span>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <!--   ERROR MESSAGE -->
-                                    <div style="text-align: center;" class="alert-danger" th:if="${listErrorMessage}" th:text="${listErrorMessage}">Error Message</div>
-                                    <br/>
-                                    <a href="#" th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
                                     <div th:include="eliminarModal.html" th:remove="tag"></div>
                                     <div th:include="editarModal.html" th:remove="tag"></div>
+                                    <!--   ERROR MESSAGE -->
+                                    <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
+                                    <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Error Message</div>
+                                    <br/>
+                                    <a href="#" th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
                                 </div>
                             </div>
                         </div>

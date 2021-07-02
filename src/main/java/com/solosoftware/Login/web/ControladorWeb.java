@@ -22,11 +22,13 @@ public class ControladorWeb {
     @Autowired
     RolDao rolDao;
 
+    // login.html
     @GetMapping({"/", "/login"})
     public String loadPage() {
         return "login";
     }
 
+    // index.html
     @GetMapping("/index")
     public String listaUsuarios(Model model) {
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
@@ -35,6 +37,7 @@ public class ControladorWeb {
         return "index";
     }
 
+    //registro.html
     @GetMapping("/registro")
     public String registro(Model model) {
         model.addAttribute("registroUsuario", new Usuario());
@@ -43,7 +46,7 @@ public class ControladorWeb {
         return "registro";
     }
 
-    //metodo validaciones spring
+    //agregar usuario
     @PostMapping("/registro")
     public String validarUsuario(@Valid @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
@@ -67,20 +70,9 @@ public class ControladorWeb {
         return "login";
     }
 
-    // eliminar usuario
-//    @GetMapping("/eliminarUsuario/{idUsuario}")
-//    public String eliminarUsuario(Model model, @PathVariable(name = "idUsuario") Long idUsuario) {
-//        try {
-//            usuarioService.eliminarUsuario(idUsuario);
-//        } catch (Exception ex) {
-//            model.addAttribute("listErrorMessage", ex.getMessage());
-//        }
-//
-//        //retornamos getmapping index(lista)
-//        return listaUsuarios(model);
-//    }
+    //editar usuario
     @PostMapping("/editarUsuario")
-    public String guardarUsuario(@Valid @ModelAttribute("editarUsuario") Usuario usuario, BindingResult result, ModelMap model) {
+    public String guardarUsuario(Usuario usuario, BindingResult result, ModelMap model) throws Exception {
 //        if (result.hasErrors()) {
 //            model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
 //            model.addAttribute("rolesLista", rolDao.findAll());
@@ -88,9 +80,12 @@ public class ControladorWeb {
         try {
             usuarioService.editarUsuario(usuario);
         } catch (Exception ex) {
-            model.addAttribute("listErrorMessage", ex.getMessage());
+            if(ex.getMessage().contains("UNIQUE")){ //aqui validar que la excepcion sea por uniquekey
+                model.addAttribute("editErrorMessage", "Este email está en uso.");
+            }
             model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
             model.addAttribute("rolesLista", rolDao.findAll());
+            return "index";
         }
         // }
 
@@ -101,9 +96,9 @@ public class ControladorWeb {
         return "index";
     }
 
-    @GetMapping("/editarUsuario")
+    @GetMapping("/recuperarIdUsuario")
     @ResponseBody
-    public Usuario editarUsuario(Model model, Long idUsuario) throws Exception {
+    public Usuario recuperarIdUsuario(Model model, Long idUsuario) throws Exception {
 
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
         model.addAttribute("rolesLista", rolDao.findAll());
@@ -111,23 +106,17 @@ public class ControladorWeb {
         return usuarioService.getUsuarioById(idUsuario);
     }
 
-    @GetMapping("/eliminarUsuario")
-    @ResponseBody
-    public Usuario eliminarUsuario(Model model, Long idUsuario) throws Exception {
-        model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
-        model.addAttribute("rolesLista", rolDao.findAll());
-
-        return usuarioService.getUsuarioById(idUsuario);
-    }
-    
+    //eliminar usuario
     @PostMapping("/eliminarUsuario")
-    public String eliminarUsuario(@ModelAttribute("eliminarUsuario") Long idUsuario, Model model) {
+    public String eliminarUsuario(Long idUsuario, Model model) {
         try {
+            //usuarioService.getUsuarioById(idUsuario);
             usuarioService.eliminarUsuario(idUsuario);
         } catch (Exception ex) {
-            model.addAttribute("listErrorMessage", ex.getMessage());
+            model.addAttribute("deleteErrorMessage", ex.getMessage());
             model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
             model.addAttribute("rolesLista", rolDao.findAll());
+            return "index";
         }
         // mostramos la lista de roles/usuarios
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());

@@ -309,15 +309,9 @@ FOOTER
 
 .alert-danger-registro {
     position: relative;
-    width: 343px;
-    height: 20px;
     padding: 1px 1px;
     margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
+    color: #F9191B;
     font-size: 15px;
 }
 

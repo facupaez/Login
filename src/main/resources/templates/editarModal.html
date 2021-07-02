@@ -17,8 +17,8 @@
                             <label class="col-form-label" for="nombre">Nombre:</label>
                             <input class="form-control" type="text" id="nombreEdit" name="nombre"/>
                             <!--<div class="alert-danger-registro" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name Error</div>
-                        -->
-                            </div>
+                            -->
+                        </div>
                         <div class="form-group">
                             <label class="col-form-label" for="apellido">Apellido:</label>
                             <input class="form-control" type="text" id="apellidoEdit" name="apellido" />
@@ -34,6 +34,10 @@
                             </select>
                         </div>
 
+                        <!--   ERROR MESSAGE 
+                        <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
+                        -->
+                        <br/>
                         <!--FOOTER-->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

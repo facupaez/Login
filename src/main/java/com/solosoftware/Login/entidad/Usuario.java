@@ -18,16 +18,19 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
 
+    @NotBlank(message = "Completa este campo")
     @Size(min = 4, max = 15, message = "El nombre debe tener más de 3 carácteres")
     private String nombre;
 
+    @NotBlank(message = "Completa este campo")
     @Size(min = 4, max = 15, message = "El apellido debe tener más de 3 carácteres")
     private String apellido;
 
+    @NotBlank(message = "Completa este campo")
     @Email(message = "Email inválido")
-    @NotEmpty(message = "Completa este campo")
     private String email;
 
+    @NotBlank(message = "Completa este campo")
     @Size(min = 4, message = "La contraseña debe tener más de 3 carácteres")
     private String password;
 
@@ -37,8 +40,15 @@ public class Usuario implements Serializable {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "usuario_roles",
-             joinColumns = @JoinColumn(name = "idUsuario"),
-             inverseJoinColumns = @JoinColumn(name = "idRol"))
+            joinColumns = @JoinColumn(name = "idUsuario"),
+            inverseJoinColumns = @JoinColumn(name = "idRol"))
     private Set<Rol> roles = new HashSet();
+
+    public Usuario() {
+    }
+
+    public Usuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
 }

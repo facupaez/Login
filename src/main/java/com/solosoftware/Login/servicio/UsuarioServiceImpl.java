@@ -25,7 +25,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         return usuarioDao.findAll();
     }
 
-    //checkeamos email existente
+    //checkeamos email presente para crear usuario
     private boolean checkEmailDisponible(Usuario usuario) throws Exception {
         Optional<Usuario> emailCheck = usuarioDao.findByEmail(usuario.getEmail());
         if (emailCheck.isPresent()) {
@@ -70,6 +70,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Usuario usuario = getUsuarioById(idUsuario);
         usuarioDao.delete(usuario);
+
     }
 
     //metodo editar usuario
@@ -79,9 +80,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario toUser = getUsuarioById(fromUser.getIdUsuario());
         mapUser(fromUser, toUser);
 
-        if (checkEmailDisponible(toUser)) {
-            toUser = usuarioDao.save(toUser);
-        }
+        toUser = usuarioDao.save(toUser);
         return toUser;
     }
 
