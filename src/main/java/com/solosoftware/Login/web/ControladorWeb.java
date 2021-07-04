@@ -2,6 +2,7 @@ package com.solosoftware.Login.web;
 
 import com.solosoftware.Login.dao.RolDao;
 import com.solosoftware.Login.entidad.Usuario;
+import com.solosoftware.Login.servicio.UnidadService;
 import com.solosoftware.Login.servicio.UsuarioService;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,9 @@ public class ControladorWeb {
 
     @Autowired
     UsuarioService usuarioService;
+    
+    @Autowired
+    UnidadService unidadService;
 
     @Autowired
     RolDao rolDao;
@@ -29,12 +33,20 @@ public class ControladorWeb {
     }
 
     // index.html
-    @GetMapping("/index")
+    @GetMapping("/listaUsuarios")
     public String listaUsuarios(Model model) {
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
         model.addAttribute("rolesLista", rolDao.findAll());
 
-        return "index";
+        return "listaUsuarios";
+    }
+
+    // listaUnidades.html
+    @GetMapping("/listaUnidades")
+    public String listaUnidades(Model model) {
+        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+
+        return "listaUnidades";
     }
 
     //registro.html
@@ -80,7 +92,7 @@ public class ControladorWeb {
         try {
             usuarioService.editarUsuario(usuario);
         } catch (Exception ex) {
-            if(ex.getMessage().contains("UNIQUE")){ //aqui validar que la excepcion sea por uniquekey
+            if (ex.getMessage().contains("UNIQUE")) { //aqui validar que la excepcion sea por uniquekey
                 model.addAttribute("editErrorMessage", "Este email está en uso.");
             }
             model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
