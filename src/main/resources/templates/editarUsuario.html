@@ -1,64 +1,50 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <!--META-->
-        <meta charset="UTF-8"/>
-        <title>Registro Template</title>
-
-        <!--STYLESHEETS-->  
-        <link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}"/>
-
-    </head>
-    <body>
-        <!--WRAPPER-->
-        <div id="wrapper" style="margin-left: -220px;">
-
-            <!--LOGIN FORM name="register-form"-->
-            <form class="login-form" style="margin-top: -180px; width: 430px;"  th:object="${editarUsuario}" th:action="@{/editar}" method="post">
-
-                <!--HEADER-->
-                <div class="header">
-                    <h1>Editar usuario.</h1>
-                </div>
-
-                <!--CONTENT-->
-                <div class="content">
-                    <input type="text" th:field="${registroUsuario.nombre}" class="input" placeholder="Nombre" style="width: 80%;"/>
-
-                    <input type="text" th:field="${registroUsuario.apellido}" class="input lastname" placeholder="Apellido" style="width: 80%;"/>
-
-                    <input type="text" th:field="${registroUsuario.email}" class="input email" placeholder="Email" style="width: 80%;" />
-                    
-                    <div>
-                        <select th:field="${registroUsuario.roles}" class="input select" style="width: 94%; color: grey;">
-                            <option th:each="rol :${rolesLista}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
-                        </select>
+<div class="myFormEdit">
+    <form th:object="${editarUsuario}" th:action="@{/editarUsuario}" method="post">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Editar usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" id="idUsuarioEdit" name="idUsuario" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="nombre">Nombre:</label>
+                            <input class="form-control" type="text" id="nombreEdit" name="nombre"/>
+                            <!--<div class="alert-danger-registro" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name Error</div>
+                            -->
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="apellido">Apellido:</label>
+                            <input class="form-control" type="text" id="apellidoEdit" name="apellido" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="email">E-mail:</label>
+                            <input class="form-control" type="text" id="emailEdit" name="email" />
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="rol">Rol:</label>
+                            <select class="form-control" id="rolesEdit" name="roles">
+                                <option th:each="rol :${rolesLista}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                            </select>
+                        </div>
 
-                    <input type="password" th:field="${registroUsuario.password}" class="input password" placeholder="Password" style="width: 80%;" />
-
-                    <input type="password" th:field="${registroUsuario.confirmaPassword}" class="input password" placeholder="Confirma Password" style="width: 80%;" />
-
+                        <!--   ERROR MESSAGE 
+                        <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
+                        -->
+                        <br/>
+                        <!--FOOTER-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <input type="submit" class="btn btn-primary" value="Guardar cambios"/>
+                        </div>
+                    </div>
                 </div>
-
-                <!--ERROR MESSAGE-->
-                <div class="content">
-                    <div style="text-align: center;" class="alert-danger-registro" th:if="${formErrorMessage}" th:text="${formErrorMessage}">Error Message</div>
-                </div>
-
-            </form>
-            <!--END LOGIN FORM-->
-
-        </div>
-        <!--END WRAPPER-->
-
-        <!--GRADIENT-->
-        <div class="gradient"></div>
-
-        <!--SCRIPTS-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-
-    </body>
-
-</html>
+            </div>
+    </form>
+</div>

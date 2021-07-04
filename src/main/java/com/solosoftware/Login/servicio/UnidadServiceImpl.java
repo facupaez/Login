@@ -18,4 +18,9 @@ public class UnidadServiceImpl implements UnidadService {
     public Iterable<Unidad> getAllUnidades() {
         return unidadDao.findAll();
     }
+
+    @Override
+    public Unidad getUnidadById(Long idUnidad) throws Exception {
+        return unidadDao.findById(idUnidad).orElseThrow(() -> new Exception("La unidad no existe."));
+    }
 }

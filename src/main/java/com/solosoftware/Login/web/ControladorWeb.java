@@ -1,6 +1,7 @@
 package com.solosoftware.Login.web;
 
 import com.solosoftware.Login.dao.RolDao;
+import com.solosoftware.Login.entidad.Unidad;
 import com.solosoftware.Login.entidad.Usuario;
 import com.solosoftware.Login.servicio.UnidadService;
 import com.solosoftware.Login.servicio.UsuarioService;
@@ -19,7 +20,7 @@ public class ControladorWeb {
 
     @Autowired
     UsuarioService usuarioService;
-    
+
     @Autowired
     UnidadService unidadService;
 
@@ -32,7 +33,7 @@ public class ControladorWeb {
         return "login";
     }
 
-    // index.html
+    // listaUsuarios.html
     @GetMapping("/listaUsuarios")
     public String listaUsuarios(Model model) {
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
@@ -49,23 +50,23 @@ public class ControladorWeb {
         return "listaUnidades";
     }
 
-    //registro.html
-    @GetMapping("/registro")
-    public String registro(Model model) {
+    //crearUsuario.html
+    @GetMapping("/crearUsuario")
+    public String crearUsuario(Model model) {
         model.addAttribute("registroUsuario", new Usuario());
         model.addAttribute("rolesLista", rolDao.findAll());
 
-        return "registro";
+        return "crearUsuario";
     }
 
     //agregar usuario
-    @PostMapping("/registro")
+    @PostMapping("/crearUsuario")
     public String validarUsuario(@Valid @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             // si hay errores devolvemos los datos ingresados
             model.addAttribute("registroUsuario", usuario);
             model.addAttribute("rolesLista", rolDao.findAll());
-            return "registro";
+            return "crearUsuario";
         } else {
             try {
                 usuarioService.crearUsuario(usuario);
@@ -73,7 +74,7 @@ public class ControladorWeb {
                 model.addAttribute("formErrorMessage", ex.getMessage());
                 model.addAttribute("registroUsuario", usuario);
                 model.addAttribute("rolesLista", rolDao.findAll());
-                return "registro";
+                return "crearUsuario";
             }
         }
 
@@ -97,7 +98,7 @@ public class ControladorWeb {
             }
             model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
             model.addAttribute("rolesLista", rolDao.findAll());
-            return "index";
+            return "listaUsuarios";
         }
         // }
 
@@ -105,7 +106,7 @@ public class ControladorWeb {
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
         model.addAttribute("rolesLista", rolDao.findAll());
 
-        return "index";
+        return "listaUsuarios";
     }
 
     @GetMapping("/recuperarIdUsuario")
@@ -118,6 +119,14 @@ public class ControladorWeb {
         return usuarioService.getUsuarioById(idUsuario);
     }
 
+    @GetMapping("/recuperarIdUnidad")
+    @ResponseBody
+    public Unidad recuperarIdUnidad(Model model, Long idUnidad) throws Exception {
+        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+
+        return unidadService.getUnidadById(idUnidad);
+    }
+
     //eliminar usuario
     @PostMapping("/eliminarUsuario")
     public String eliminarUsuario(Long idUsuario, Model model) {
@@ -128,12 +137,12 @@ public class ControladorWeb {
             model.addAttribute("deleteErrorMessage", ex.getMessage());
             model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
             model.addAttribute("rolesLista", rolDao.findAll());
-            return "index";
+            return "listaUsuarios";
         }
         // mostramos la lista de roles/usuarios
         model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
         model.addAttribute("rolesLista", rolDao.findAll());
 
-        return "index";
+        return "listaUsuarios";
     }
 }

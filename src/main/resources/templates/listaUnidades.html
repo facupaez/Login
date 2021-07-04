@@ -23,7 +23,7 @@
     </head>
     <body>
         <section>  
-            <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+            <div class="container" style="width: 3000px; margin-top: 50px; margin-bottom: 50px;">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -52,19 +52,19 @@
                                                 <td th:text="${unidad.estadoUnidad.nombre}"></td>
                                                 <td th:text="${unidad.descripcion}"></td>
                                                 <td><div class="text-center">
-                                                     <!--   <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
-                                                            <a class="btn btn-success editBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Editar <i class="fas fa-edit"></i></a>
+                                                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
+                                                            <a class="btn btn-success editBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Editar <i class="fas fa-edit"></i></a>
                                                         </span> 
                                                         <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
-                                                            <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Eliminar <i class="fas fa-user-times"></i></a>
-                                                        </span>-->
+                                                            <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Eliminar <i class="fas fa-user-times"></i></a>
+                                                        </span>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div th:include="eliminarModal.html" th:remove="tag"></div>
-                                    <div th:include="editarModal.html" th:remove="tag"></div>
+                                    <div th:include="eliminarUsuario.html" th:remove="tag"></div>
+                                    <div th:include="editarUsuario.html" th:remove="tag"></div>
                                     <!--   ERROR MESSAGE -->
                                     <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
                                     <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Error Message</div>
