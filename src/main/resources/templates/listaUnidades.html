@@ -48,8 +48,8 @@
                                             <tr th:each="unidad : ${listaUnidades}">
                                                 <td th:text="${unidad.idUnidad}"></td>
                                                 <td th:text="${unidad.dominio}"></td>
-                                                <td th:text="${unidad.idTipoUnidad}"></td>
-                                                <td th:text="${unidad.idEstadoUnidad}"></td>
+                                                <td th:text="${unidad.tipoUnidad.nombre}"></td>
+                                                <td th:text="${unidad.estadoUnidad.nombre}"></td>
                                                 <td th:text="${unidad.descripcion}"></td>
                                                 <td><div class="text-center">
                                                      <!--   <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">

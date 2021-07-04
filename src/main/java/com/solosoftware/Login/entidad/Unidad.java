@@ -14,12 +14,16 @@ public class Unidad implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUnidad;
-    
+
     private String dominio;
-    
-    private String idTipoUnidad;
-    
+
+    @ManyToOne
+    @JoinColumn(name = "idTipoUnidad")
+    private TipoUnidad tipoUnidad;
+
     private String descripcion;
-    
-    private String idEstadoUnidad;
+
+    @ManyToOne
+    @JoinColumn(name = "idEstadoUnidad")
+    private EstadoUnidad estadoUnidad;
 }
