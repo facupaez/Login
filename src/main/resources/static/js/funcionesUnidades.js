@@ -23,16 +23,15 @@ $(document).ready(function () {
 
         event.preventDefault();
         var href = $(this).attr('href');
-        $.get(href, function (usuario) {
+        $.get(href, function (unidad) {
 
-            $('.myFormEdit #idUsuarioEdit').val(usuario.idUsuario);
-            $('.myFormEdit #nombreEdit').val(usuario.nombre);
-            $('.myFormEdit #apellidoEdit').val(usuario.apellido);
-            $('.myFormEdit #emailEdit').val(usuario.email);
-            $('.myForm #rolesEdit').val('');
-            for (const rol of usuario.roles) {
-                $('.myFormEdit #rolesEdit option[value=' + rol.idRol + ']').prop('selected', 'selected')
-            }
+            $('.myFormEdit #idUnidadEdit').val(unidad.idUsuario);
+            $('.myFormEdit #dominioEdit').val(unidad.dominio);
+            $('.myFormEdit #descripcionEdit').val(unidad.descripcion);
+            $('.myFormEdit #tipoUnidadEdit').val(unidad.tipoUnidad.idTipoUnidad);
+            $('.myFormEdit #estadoUnidadEdit').val(unidad.estadoUnidad.idEstadoUnidad);
+            //$('.myFormEdit #tipoUnidadEdit option[value=' + unidad.tipoUnidad.idTipoUnidad + ']').prop('selected', 'selected');
+            //$('.myFormEdit #estadoUnidadEdit option[value=' + unidad.estadoUnidad.idEstadoUnidad + ']').prop('selected', 'selected');
         });
         $('.myFormEdit #editModal').find('.modal-header').css('background', '#0d6efd');
         $('.myFormEdit #editModal').find('.modal-header').css('color', 'white');
@@ -43,9 +42,9 @@ $(document).ready(function () {
 
         event.preventDefault();
         var href = $(this).attr('href');
-        $.get(href, function (usuario) {
+        $.get(href, function (unidad) {
 
-            $('.myFormDelete #idUsuarioDelete').val(usuario.idUsuario);
+            $('.myFormDelete #idUnidadDelete').val(unidad.idTipoUnidad);
             $('.myFormDelete #deleteModal').modal();
         });
         $('#deleteModal').find('.modal-header').css('background', '#0d6efd');

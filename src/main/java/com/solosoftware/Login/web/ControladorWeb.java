@@ -1,6 +1,8 @@
 package com.solosoftware.Login.web;
 
+import com.solosoftware.Login.dao.EstadoUnidadDao;
 import com.solosoftware.Login.dao.RolDao;
+import com.solosoftware.Login.dao.TipoUnidadDao;
 import com.solosoftware.Login.entidad.Unidad;
 import com.solosoftware.Login.entidad.Usuario;
 import com.solosoftware.Login.servicio.UnidadService;
@@ -27,6 +29,12 @@ public class ControladorWeb {
     @Autowired
     RolDao rolDao;
 
+    @Autowired
+    TipoUnidadDao tipoUnidadDao;
+
+    @Autowired
+    EstadoUnidadDao estadoUnidadDao;
+
     // login.html
     @GetMapping({"/", "/login"})
     public String loadPage() {
@@ -40,14 +48,6 @@ public class ControladorWeb {
         model.addAttribute("rolesLista", rolDao.findAll());
 
         return "listaUsuarios";
-    }
-
-    // listaUnidades.html
-    @GetMapping("/listaUnidades")
-    public String listaUnidades(Model model) {
-        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
-
-        return "listaUnidades";
     }
 
     //crearUsuario.html
@@ -109,6 +109,7 @@ public class ControladorWeb {
         return "listaUsuarios";
     }
 
+    //recuperar id usuario
     @GetMapping("/recuperarIdUsuario")
     @ResponseBody
     public Usuario recuperarIdUsuario(Model model, Long idUsuario) throws Exception {
@@ -117,14 +118,6 @@ public class ControladorWeb {
         model.addAttribute("rolesLista", rolDao.findAll());
 
         return usuarioService.getUsuarioById(idUsuario);
-    }
-
-    @GetMapping("/recuperarIdUnidad")
-    @ResponseBody
-    public Unidad recuperarIdUnidad(Model model, Long idUnidad) throws Exception {
-        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
-
-        return unidadService.getUnidadById(idUnidad);
     }
 
     //eliminar usuario
@@ -144,5 +137,28 @@ public class ControladorWeb {
         model.addAttribute("rolesLista", rolDao.findAll());
 
         return "listaUsuarios";
+    }
+
+    //recuperar id unidad
+    @GetMapping("/recuperarIdUnidad")
+    @ResponseBody
+    public Unidad recuperarIdUnidad(Model model, Long idUnidad) throws Exception {
+
+        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+        model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+        model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+
+        return unidadService.getUnidadById(idUnidad);
+    }
+
+    // listaUnidades.html
+    @GetMapping("/listaUnidades")
+    public String listaUnidades(Model model) {
+
+        model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+        model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+        model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+
+        return "listaUnidades";
     }
 }

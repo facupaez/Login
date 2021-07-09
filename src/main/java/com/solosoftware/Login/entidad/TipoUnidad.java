@@ -17,5 +17,4 @@ public class TipoUnidad implements Serializable {
 
     private String nombre;
 
-    private String descripcion;
 }

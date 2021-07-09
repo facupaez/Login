@@ -29,9 +29,9 @@ $(document).ready(function () {
             $('.myFormEdit #nombreEdit').val(usuario.nombre);
             $('.myFormEdit #apellidoEdit').val(usuario.apellido);
             $('.myFormEdit #emailEdit').val(usuario.email);
-            $('.myForm #rolesEdit').val('');
+            $('.myFormEdit #rolesEdit').val('');
             for (const rol of usuario.roles) {
-                $('.myFormEdit #rolesEdit option[value=' + rol.idRol + ']').prop('selected', 'selected')
+                $('.myFormEdit #rolesEdit option[value=' + rol.idRol + ']').prop('selected', 'selected');
             }
         });
         $('.myFormEdit #editModal').find('.modal-header').css('background', '#0d6efd');

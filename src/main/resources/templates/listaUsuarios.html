@@ -61,8 +61,8 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <div th:include="eliminarModal.html" th:remove="tag"></div>
-                                    <div th:include="editarModal.html" th:remove="tag"></div>
+                                    <div th:include="eliminarUsuario.html" th:remove="tag"></div>
+                                    <div th:include="editarUsuario.html" th:remove="tag"></div>
                                     <!--   ERROR MESSAGE -->
                                     <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
                                     <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Error Message</div>
