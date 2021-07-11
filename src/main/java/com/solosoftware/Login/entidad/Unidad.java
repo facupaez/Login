@@ -21,9 +21,16 @@ public class Unidad implements Serializable {
     @JoinColumn(name = "idTipoUnidad")
     private TipoUnidad tipoUnidad;
 
-    private String descripcion;
-
     @ManyToOne
     @JoinColumn(name = "idEstadoUnidad")
     private EstadoUnidad estadoUnidad;
+
+    private String descripcion;
+
+    public Unidad() {
+    }
+
+    public Unidad(Long idUnidad) {
+        this.idUnidad = idUnidad;
+    }
 }

@@ -25,29 +25,41 @@ $(document).ready(function () {
         var href = $(this).attr('href');
         $.get(href, function (unidad) {
 
-            $('.myFormEdit #idUnidadEdit').val(unidad.idUsuario);
+            $('.myFormEdit #idUnidadEdit').val(unidad.idUnidad);
             $('.myFormEdit #dominioEdit').val(unidad.dominio);
-            $('.myFormEdit #descripcionEdit').val(unidad.descripcion);
             $('.myFormEdit #tipoUnidadEdit').val(unidad.tipoUnidad.idTipoUnidad);
             $('.myFormEdit #estadoUnidadEdit').val(unidad.estadoUnidad.idEstadoUnidad);
-            //$('.myFormEdit #tipoUnidadEdit option[value=' + unidad.tipoUnidad.idTipoUnidad + ']').prop('selected', 'selected');
-            //$('.myFormEdit #estadoUnidadEdit option[value=' + unidad.estadoUnidad.idEstadoUnidad + ']').prop('selected', 'selected');
+            $('.myFormEdit #descripcionEdit').val(unidad.descripcion);
+            $('.myFormEdit #editModal').modal();
+
         });
         $('.myFormEdit #editModal').find('.modal-header').css('background', '#0d6efd');
         $('.myFormEdit #editModal').find('.modal-header').css('color', 'white');
         $('.myFormEdit #editModal').find('.close').css('color', 'white');
-        $('.myFormEdit #editModal').modal();
     });
+
+    $('.createBtn').on('click', function (event) {
+
+        $('#formUnidades').trigger("reset");
+        
+        $('#createModal').modal();
+
+        $('.myFormCreate #createModal').find('.modal-header').css('background', '#28a745');
+        $('.myFormCreate #createModal').find('.modal-header').css('color', 'white');
+        $('.myFormCreate #createModal').find('.close').css('color', 'white');
+    });
+
     $('.table .deleteBtn').on('click', function (event) {
 
         event.preventDefault();
         var href = $(this).attr('href');
         $.get(href, function (unidad) {
 
-            $('.myFormDelete #idUnidadDelete').val(unidad.idTipoUnidad);
+            $('.myFormDelete #idUnidadDelete').val(unidad.idUnidad);
+            $('.myFormDelete #dominioUnidadDelete').val(unidad.dominio);
             $('.myFormDelete #deleteModal').modal();
         });
-        $('#deleteModal').find('.modal-header').css('background', '#0d6efd');
+        $('#deleteModal').find('.modal-header').css('background', '#dc3545');
         $('#deleteModal').find('.modal-header').css('color', 'white');
         $('#deleteModal').find('.close').css('color', 'white');
     });

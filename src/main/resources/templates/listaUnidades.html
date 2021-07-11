@@ -28,6 +28,9 @@
                     <div class="col-lg-12 col-md-6 col-12">
                         <div class="card">
                             <div class="card-header">
+                                <span class="alinear-btn-nuevaUnidad" th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> 
+                                    <a class="btn btn-success createBtn">Agregar unidad <i class="fas fa-plus-circle"></i></a>
+                                </span> 
                                 <h4>Listado de Unidades</h4>
                             </div>
                             <div class="card-body">
@@ -52,23 +55,25 @@
                                                 <td th:text="${unidad.descripcion}"></td>
                                                 <td><div class="text-center">
                                                         <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
-                                                            <a class="btn btn-success editBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Editar <i class="fas fa-edit"></i></a>
+                                                            <a class="btn btn-primary editBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Editar <i class="fas fa-edit"></i></a>
                                                         </span> 
                                                         <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
-                                                            <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Eliminar <i class="fas fa-user-times"></i></a>
+                                                            <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUnidad/(idUnidad=${unidad.idUnidad})}">Eliminar <i class="far fa-trash-alt"></i></a>
                                                         </span>
                                                     </div>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div th:include="crearUnidad.html" th:remove="tag"></div>
                                     <div th:include="eliminarUnidad.html" th:remove="tag"></div>
                                     <div th:include="editarUnidad.html" th:remove="tag"></div>
                                     <!--   ERROR MESSAGE -->
-                                    <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
-                                    <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Error Message</div>
+                                    <div style="text-align: center;" class="alert-danger" th:if="${createErrorMessage}" th:text="${createErrorMessage}">Create Error Message</div>
+                                    <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Edit Error Message</div>
+                                    <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Delete Error Message</div>
                                     <br/>
-                                    <a href="#" th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
+                                    <a href="#" th:href="@{/logout}" class="btn btn-danger">Cerrar sesión <i class="fas fa-sign-out-alt"></i></a>
                                 </div>
                             </div>
                         </div> 

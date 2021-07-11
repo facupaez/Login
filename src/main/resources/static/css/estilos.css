@@ -354,3 +354,12 @@ FOOTER
     max-width: 1600px;
 }
 
+.input-delete-modal{
+    width: 80px;
+    margin-top: 20px;
+}
+
+.alinear-btn-nuevaUnidad{
+    float: right;
+}
+

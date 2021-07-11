@@ -124,7 +124,6 @@ public class ControladorWeb {
     @PostMapping("/eliminarUsuario")
     public String eliminarUsuario(Long idUsuario, Model model) {
         try {
-            //usuarioService.getUsuarioById(idUsuario);
             usuarioService.eliminarUsuario(idUsuario);
         } catch (Exception ex) {
             model.addAttribute("deleteErrorMessage", ex.getMessage());
@@ -161,4 +160,83 @@ public class ControladorWeb {
 
         return "listaUnidades";
     }
+
+    //agregar unidad
+    @PostMapping("/crearUnidad")
+    public String crearUnidad(@Valid @ModelAttribute("crearUnidad") Unidad unidad, BindingResult result, ModelMap model) throws Exception{
+//        if (result.hasErrors()) {
+//            // si hay errores devolvemos los datos ingresados
+//            model.addAttribute("crearUnidad", unidad);
+//            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+//            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+//            return "crearUnidad";
+//        } else {
+        try {
+            unidadService.crearUnidad(unidad);
+            // mostramos las listas de unidades, estados y tipos de unidad
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+        } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE")) { //aqui validar que la excepcion sea por uniquekey
+                model.addAttribute("createErrorMessage", "Esta unidad está en uso.");
+            }
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+           return "listaUnidades";
+        }
+        //}
+
+        return "listaUnidades";
+    }
+
+    //eliminar unidad
+    @PostMapping("/eliminarUnidad")
+    public String eliminarUnidad(Long idUnidad, Model model) {
+        try {
+            unidadService.eliminarUnidad(idUnidad);
+            // mostramos las listas de unidades, estados y tipos de unidad
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+        } catch (Exception ex) {
+            model.addAttribute("deleteErrorMessage", ex.getMessage());
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+           return "listaUnidades";
+        }
+
+        return "listaUnidades";
+    }
+
+    //editar unidad
+    @PostMapping("/editarUnidad")
+    public String guardarUnidad(Unidad unidad, BindingResult result, ModelMap model) throws Exception {
+//        if (result.hasErrors()) {
+//            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+//             model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+//             model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+//        } else {
+        try {
+            unidadService.editarUnidad(unidad);
+            // mostramos las listas de unidades, estados y tipos de unidad
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+        } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE")) { //aqui validar que la excepcion sea por uniquekey
+                model.addAttribute("editErrorMessage", "Esta unidad está en uso.");
+            }
+            model.addAttribute("listaUnidades", unidadService.getAllUnidades());
+            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+            return "listaUnidades";
+        }
+        // }
+
+        return "listaUnidades";
+    }
+
 }

@@ -80,7 +80,8 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario toUser = getUsuarioById(fromUser.getIdUsuario());
         mapUser(fromUser, toUser);
 
-        toUser = usuarioDao.save(toUser);
+        //editamos usuario en el caso que no exista
+        usuarioDao.save(toUser);
         return toUser;
     }
 
