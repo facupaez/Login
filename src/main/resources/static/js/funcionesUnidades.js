@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('.createBtn').on('click', function (event) {
 
         $('#formUnidades').trigger("reset");
-        
+
         $('#createModal').modal();
 
         $('.myFormCreate #createModal').find('.modal-header').css('background', '#28a745');
@@ -56,11 +56,16 @@ $(document).ready(function () {
         $.get(href, function (unidad) {
 
             $('.myFormDelete #idUnidadDelete').val(unidad.idUnidad);
-            $('.myFormDelete #dominioUnidadDelete').val(unidad.dominio);
+            $('.myFormDelete #dominioUnidadDelete').val(unidad.dominio + "?");
             $('.myFormDelete #deleteModal').modal();
         });
         $('#deleteModal').find('.modal-header').css('background', '#dc3545');
         $('#deleteModal').find('.modal-header').css('color', 'white');
         $('#deleteModal').find('.close').css('color', 'white');
+
+        //funcion para auto ajustar inputs
+        let width = $('#temporally');
+        $('#dominioUnidadDelete').css('width', width.css('width'));
+        $('#dominioUnidadDelete').val(width.text());
     });
 });

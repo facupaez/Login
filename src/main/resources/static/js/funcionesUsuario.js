@@ -39,6 +39,18 @@ $(document).ready(function () {
         $('.myFormEdit #editModal').find('.close').css('color', 'white');
         $('.myFormEdit #editModal').modal();
     });
+
+    $('.createBtn').on('click', function (event) {
+
+        $('#formUsuarios').trigger("reset");
+
+        $('#createModal').modal();
+
+        $('.myFormCreate #createModal').find('.modal-header').css('background', '#28a745');
+        $('.myFormCreate #createModal').find('.modal-header').css('color', 'white');
+        $('.myFormCreate #createModal').find('.close').css('color', 'white');
+    });
+
     $('.table .deleteBtn').on('click', function (event) {
 
         event.preventDefault();
@@ -46,10 +58,16 @@ $(document).ready(function () {
         $.get(href, function (usuario) {
 
             $('.myFormDelete #idUsuarioDelete').val(usuario.idUsuario);
+            $('.myFormDelete #emailDelete').val(usuario.email + "?");
             $('.myFormDelete #deleteModal').modal();
         });
-        $('#deleteModal').find('.modal-header').css('background', '#0d6efd');
+        $('#deleteModal').find('.modal-header').css('background', '#dc3545');
         $('#deleteModal').find('.modal-header').css('color', 'white');
         $('#deleteModal').find('.close').css('color', 'white');
+
+        //funcion para auto ajustar inputs
+        let width = $('#temporally');
+        $('#emailDelete').css('width', width.css('width'));
+        $('#emailDelete').val(width.text());
     });
 });

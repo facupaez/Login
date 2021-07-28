@@ -59,31 +59,59 @@ public class ControladorWeb {
         return "crearUsuario";
     }
 
-    //agregar usuario
-    @PostMapping("/crearUsuario")
-    public String validarUsuario(@Valid @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
-        if (result.hasErrors()) {
-            // si hay errores devolvemos los datos ingresados
-            model.addAttribute("registroUsuario", usuario);
+//    //crear usuario .html
+//    @PostMapping("/crearUsuario")
+//    public String validarUsuario(@Valid @ModelAttribute("registroUsuario") Usuario usuario, BindingResult result, ModelMap model) {
+//        if (result.hasErrors()) {
+//            // si hay errores devolvemos los datos ingresados
+//            model.addAttribute("registroUsuario", usuario);
+//            model.addAttribute("rolesLista", rolDao.findAll());
+//            return "crearUsuario";
+//        } else {
+//            try {
+//                usuarioService.crearUsuario(usuario);
+//            } catch (Exception ex) {
+//                model.addAttribute("formErrorMessage", ex.getMessage());
+//                model.addAttribute("registroUsuario", usuario);
+//                model.addAttribute("rolesLista", rolDao.findAll());
+//                return "crearUsuario";
+//            }
+//        }
+//
+//        // mostramos la lista de roles
+//        model.addAttribute("rolesLista", rolDao.findAll());
+//        return "login";
+//    }
+    
+    //    crear usuario modal
+    @PostMapping("/crearUsuarioM")
+    public String crearUsuario(@Valid @ModelAttribute("crearUsuarioM") Usuario usuario, BindingResult result, ModelMap model) throws Exception {
+//        if (result.hasErrors()) {
+//            // si hay errores devolvemos los datos ingresados
+//            model.addAttribute("crearUnidad", unidad);
+//            model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
+//            model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
+//            return "crearUnidad";
+//        } else {
+        try {
+            usuarioService.crearUsuario(usuario);
+            // mostramos las listas de unidades, estados y tipos de unidad
+            model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
             model.addAttribute("rolesLista", rolDao.findAll());
-            return "crearUsuario";
-        } else {
-            try {
-                usuarioService.crearUsuario(usuario);
-            } catch (Exception ex) {
-                model.addAttribute("formErrorMessage", ex.getMessage());
-                model.addAttribute("registroUsuario", usuario);
-                model.addAttribute("rolesLista", rolDao.findAll());
-                return "crearUsuario";
+        } catch (Exception ex) {
+            if (ex.getMessage().contains("UNIQUE")) { //aqui validar que la excepcion sea por uniquekey
+                model.addAttribute("createErrorMessage", "Este email está en uso.");
             }
+            model.addAttribute("listaUsuarios", usuarioService.getAllUsers());
+            model.addAttribute("rolesLista", rolDao.findAll());
+            return "listaUsuarios";
         }
+        //}
 
-        // mostramos la lista de roles
-        model.addAttribute("rolesLista", rolDao.findAll());
-        return "login";
+        return "listaUsuarios";
     }
 
-    //editar usuario
+    //editar usuario html
     @PostMapping("/editarUsuario")
     public String guardarUsuario(Usuario usuario, BindingResult result, ModelMap model) throws Exception {
 //        if (result.hasErrors()) {
@@ -163,7 +191,7 @@ public class ControladorWeb {
 
     //agregar unidad
     @PostMapping("/crearUnidad")
-    public String crearUnidad(@Valid @ModelAttribute("crearUnidad") Unidad unidad, BindingResult result, ModelMap model) throws Exception{
+    public String crearUnidad(@Valid @ModelAttribute("crearUnidad") Unidad unidad, BindingResult result, ModelMap model) throws Exception {
 //        if (result.hasErrors()) {
 //            // si hay errores devolvemos los datos ingresados
 //            model.addAttribute("crearUnidad", unidad);
@@ -184,7 +212,7 @@ public class ControladorWeb {
             model.addAttribute("listaUnidades", unidadService.getAllUnidades());
             model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
             model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
-           return "listaUnidades";
+            return "listaUnidades";
         }
         //}
 
@@ -205,7 +233,7 @@ public class ControladorWeb {
             model.addAttribute("listaUnidades", unidadService.getAllUnidades());
             model.addAttribute("tipoUnidadLista", tipoUnidadDao.findAll());
             model.addAttribute("estadoUnidadLista", estadoUnidadDao.findAll());
-           return "listaUnidades";
+            return "listaUnidades";
         }
 
         return "listaUnidades";

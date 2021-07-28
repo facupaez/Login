@@ -8,7 +8,7 @@
         <title>Lista Usuarios Template</title>
 
         <!-- My CSS-->
-        <link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}"/>
+        <link rel="stylesheet" type="text/css" href="../static/css/estilosUsuarios.css.css" th:href="@{/css/estilosUsuarios.css}"/>
 
         <!-- BOOTSTRAP 4 CSS -->
         <link rel="stylesheet" crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
@@ -28,9 +28,11 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
+                                <span class="alinear-btn-nuevoUsuario" th:if="${#authorization.expression('hasRole(''ROLE_SUPER'')')}"> 
+                                    <a class="btn btn-success createBtn">Crear usuario <i class="fas fa-plus-circle"></i></a>
+                                </span> 
                                 <h4>Listado de Usuarios</h4>
                             </div>
-
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table id="listaUsuarios" class="table table-bordered table-hover table-striped">
@@ -50,10 +52,10 @@
                                                 <td th:text="${usuario.apellido}"></td>
                                                 <td th:text="${usuario.email}"></td>
                                                 <td><div class="text-center">
-                                                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')} or (${#authorization.expression('hasRole(''ROLE_USER'')')} and ${#httpServletRequest.remoteUser==usuario.email})">
-                                                            <a class="btn btn-success editBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Editar <i class="fas fa-edit"></i></a>
+                                                        <span th:if="${#authorization.expression('hasRole(''ROLE_SUPER'')')} or ${#authorization.expression('hasRole(''ROLE_GUARDIA'')')}">
+                                                            <a class="btn btn-primary editBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Editar <i class="fas fa-edit"></i></a>
                                                         </span> 
-                                                        <span th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">   |   
+                                                        <span th:if="${#authorization.expression('hasRole(''ROLE_SUPER'')')}">   |   
                                                             <a class="btn btn-danger deleteBtn" th:href="@{recuperarIdUsuario/(idUsuario=${usuario.idUsuario})}">Eliminar <i class="fas fa-user-times"></i></a>
                                                         </span>
                                                     </div>
@@ -61,13 +63,15 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div th:include="crearUsuarioM.html" th:remove="tag"></div>
                                     <div th:include="eliminarUsuario.html" th:remove="tag"></div>
                                     <div th:include="editarUsuario.html" th:remove="tag"></div>
                                     <!--   ERROR MESSAGE -->
+                                    <div style="text-align: center;" class="alert-danger" th:if="${createErrorMessage}" th:text="${createErrorMessage}">Create Error Message</div>
                                     <div style="text-align: center;" class="alert-danger" th:if="${editErrorMessage}" th:text="${editErrorMessage}">Error Message</div>
                                     <div style="text-align: center;" class="alert-danger" th:if="${deleteErrorMessage}" th:text="${deleteErrorMessage}">Error Message</div>
                                     <br/>
-                                    <a href="#" th:href="@{/logout}" class="btn btn-primary">Cerrar sesión</a>
+                                    <a href="#" th:href="@{/logout}" class="btn btn-danger">Cerrar sesión</a>
                                 </div>
                             </div>
                         </div>

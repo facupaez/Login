@@ -1,7 +1,7 @@
 <div class="myFormDelete">
     <form th:object="${eliminarUnidad}" th:action="@{/eliminarUnidad}" method="post">
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Eliminar unidad</h5>
@@ -11,9 +11,8 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <p>
-                                Estás seguro que quieres eliminar la unidad <input class="input-delete-modal" readonly="true" id="dominioUnidadDelete" name="dominioUnidad"/>?
-                            </p>
+                            <p id="temporally"></p>
+                            Estás seguro que quieres eliminar la unidad <input class="input-delete-modal" type="text" readonly="true" id="dominioUnidadDelete" name="dominioUnidad"/>
                             <input type="hidden" id="idUnidadDelete" name="idUnidad"/>
                         </div>
                     </div>

@@ -39,7 +39,7 @@ public class UnidadServiceImpl implements UnidadService {
 
     //metodo eliminar unidad
     @Override
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_SUPER')")
     public void eliminarUnidad(Long idUnidad) throws Exception {
         Unidad unidad = getUnidadById(idUnidad);
         unidadDao.delete(unidad);

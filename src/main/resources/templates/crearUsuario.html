@@ -8,7 +8,7 @@
         <title>Registro Template</title>
 
         <!--MY STYLESHEETS-->  
-        <link rel="stylesheet" type="text/css" href="../static/css/estilos.css" th:href="@{/css/estilos.css}"/>
+        <link rel="stylesheet" type="text/css" href="../static/css/estilosRegistro.css" th:href="@{/css/estilosRegistro.css}"/>
 
     </head>
     <body>
@@ -26,31 +26,31 @@
 
                 <!--CONTENT-->
                 <div class="content">
-                    <input type="text" th:field="${registroUsuario.nombre}" class="input name" placeholder="Nombre" style="width: 80%;"/>
+                    <input type="text" th:field="${registroUsuario.nombre}" class="input name" placeholder="Nombre" />
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
 
-                    <input type="text" th:field="${registroUsuario.apellido}" class="input lastname" placeholder="Apellido" style="width: 80%;"/>
+                    <input type="text" th:field="${registroUsuario.apellido}" class="input lastname" placeholder="Apellido" />
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
 
-                    <input type="text" th:field="${registroUsuario.email}" class="input email" placeholder="Email" style="width: 80%;" />
+                    <input type="text" th:field="${registroUsuario.email}" class="input email" placeholder="Email" />
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 
                     <div>
-                        <select th:field="${registroUsuario.roles}" class="input select" style="width: 94%; color: grey;">
+                        <select th:field="${registroUsuario.roles}" class="input select">
                             <option th:each="rol :${rolesLista}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
                         </select>
                     </div>
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></small>
 
-                    <input type="password" th:field="${registroUsuario.password}" class="input password" placeholder="Password" style="width: 80%;" />
+                    <input type="password" th:field="${registroUsuario.password}" class="input password" placeholder="Password" />
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
 
-                    <input type="password" th:field="${registroUsuario.confirmaPassword}" class="input password" placeholder="Confirma Password" style="width: 80%;" />
+                    <input type="password" th:field="${registroUsuario.confirmaPassword}" class="input password2" placeholder="Confirma Password" />
                     <br/>
                     <small class="alert-danger-registro" th:if="${#fields.hasErrors('confirmaPassword')}" th:errors="*{confirmaPassword}"></small>
 

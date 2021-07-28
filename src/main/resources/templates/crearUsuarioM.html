@@ -1,0 +1,48 @@
+<div class="myFormCreate">
+    <form id="formUsuarios" th:object="${crearUsuarioM}" th:action="@{/crearUsuarioM}" method="post">
+        <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Crear usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="col-form-label" for="nombre">Nombre:</label>
+                            <input class="form-control" type="text" id="nombreCreate" name="nombre"/>
+                            <!--<div class="alert-danger-registro" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Name Error</div>
+                            -->
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="apellido">Apellido:</label>
+                            <input class="form-control" type="text" id="apellidoCreate" name="apellido"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="email">Email:</label>
+                            <input class="form-control" type="text" id="emailCreate" name="email"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="rol">Rol:</label>
+                            <select class="form-control" id="rolCreate" name="roles">
+                                <option th:each="rol :${rolesLista}" th:value="${rol.idRol}" th:text="${rol.nombre}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label" for="password">Contraseña:</label>
+                            <input class="form-control" type="password" id="passowrdCreate" name="password" />
+                        </div>
+                        <br/>
+                        <!--FOOTER-->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <input type="submit" class="btn btn-success" value="Crear usuario"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </form>
+</div>

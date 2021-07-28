@@ -1,7 +1,7 @@
 <div class="myFormDelete">
     <form th:object="${eliminarUsuario}" th:action="@{/eliminarUsuario}" method="post">
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLongTitle">Eliminar usuario</h5>
@@ -11,15 +11,14 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <p class="alert alert-danger-delete">
-                                Estás seguro que quieres eliminar este usuario?
-                            </p>
+                            <p id="temporally"></p>
+                                Estás seguro que quieres eliminar el usuario <input class="input-delete-modal" type="text" readonly="true" id="emailDelete" name="email"/>
                             <input type="hidden" id="idUsuarioDelete" name="idUsuario"/>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <input type="submit" class="btn btn-primary" value="Eliminar"/>
+                        <input type="submit" class="btn btn-danger" value="Eliminar"/>
                     </div>
                 </div>
             </div>
