@@ -44,16 +44,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     //para crear un nuevo usuario consultamos a los metodos checkEmailDisponible y checkConfirmaPassword
     @Override
+    @PreAuthorize("hasAnyRole('ROLE_SUPER')")
     public Usuario crearUsuario(Usuario usuario) throws Exception {
         //if (checkEmailDisponible(usuario) && checkConfirmaPassword(usuario)) {
 
-            //encriptamos password
-            String encodePassword = bCryptPasswordEncoder.encode(usuario.getPassword());
-            usuario.setPassword(encodePassword);
+        //encriptamos password
+        String encodePassword = bCryptPasswordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(encodePassword);
 
-            //guardamos usuario
-            usuario = usuarioDao.save(usuario);
-     //   }
+        //guardamos usuario
+        usuario = usuarioDao.save(usuario);
+        //   }
         return usuario;
     }
 
@@ -75,6 +76,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     //metodo editar usuario
     @Override
+    @PreAuthorize("hasAnyRole('ROLE_SUPER')")
     public Usuario editarUsuario(Usuario fromUser) throws Exception {
 
         Usuario toUser = getUsuarioById(fromUser.getIdUsuario());

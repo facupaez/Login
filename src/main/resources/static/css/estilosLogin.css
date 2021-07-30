@@ -240,6 +240,9 @@ FOOTER
 *******************/
 
 .login-form .footer {
+    display:flex;
+    justify-content:center;
+    align-items:center;
     padding: 25px 30px 40px 30px;
     overflow: auto;
 
@@ -253,7 +256,7 @@ FOOTER
 
 /* Login button */
 .login-form .footer .button {
-    float:right;
+    float: left;
     padding: 11px 25px;
 
     font-family: 'Bree Serif', serif;

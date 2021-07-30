@@ -29,10 +29,11 @@ public class UnidadServiceImpl implements UnidadService {
 
     //para crear una nueva unidad consultamos al metodo checkUnidadDisponible
     @Override
+    @PreAuthorize("hasAnyRole('ROLE_SUPER')")
     public Unidad crearUnidad(Unidad unidad) throws Exception {
         //if (checkUnidadDisponible(unidad)) {
-            //guardamos unidad
-            unidad = unidadDao.save(unidad);
+        //guardamos unidad
+        unidad = unidadDao.save(unidad);
         //}
         return unidad;
     }
@@ -47,6 +48,7 @@ public class UnidadServiceImpl implements UnidadService {
 
     //metodo editar unidad
     @Override
+    @PreAuthorize("hasAnyRole('ROLE_SUPER') or hasAnyRole('ROLE_GUARDIA')")
     public Unidad editarUnidad(Unidad fromUnidad) throws Exception {
 
         Unidad toUnidad = getUnidadById(fromUnidad.getIdUnidad());
