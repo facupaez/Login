@@ -41,6 +41,12 @@ public class ControladorWeb {
         return "login";
     }
 
+    // plantilla.html
+    @GetMapping({"plantilla"})
+    public String loadPlantilla() {
+        return "plantilla";
+    }
+
     // listaUsuarios.html
     @GetMapping("/listaUsuarios")
     public String listaUsuarios(Model model) {
@@ -82,7 +88,6 @@ public class ControladorWeb {
 //        model.addAttribute("rolesLista", rolDao.findAll());
 //        return "login";
 //    }
-    
     //    crear usuario modal
     @PostMapping("/crearUsuarioM")
     public String crearUsuario(@Valid @ModelAttribute("crearUsuarioM") Usuario usuario, BindingResult result, ModelMap model) throws Exception {

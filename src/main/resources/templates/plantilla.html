@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html  lang="en" 
+       xmlns="http://www.w3.org/1999/xhtml" 
+       xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- <meta charset="UTF-8">
+          <!--<title>Navbar menu</title>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"> -->
+    </head>
+    <!-- navbar -->
+    <body class="hero-anime">	
+
+        <header th:fragment="header">
+            <div class="navigation-wrap bg-light start-header start-style">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <nav class="navbar navbar-expand-md navbar-light">
+
+                                <a class="navbar-brand" href="#"><img src="https://res.cloudinary.com/glinzzprod/image/upload/v1448487114/companies_profile_pictures/mbns3nziw6km9ltgugzo.jpg" alt="Imagen alladio"></a>	
+
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav ml-auto py-4 py-md-0">
+                                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 active">
+                                            <a class="nav-link" href="#">Inicio</a>
+                                        </li>
+                                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a class="nav-link" th:href="listaUsuarios">Lista Usuarios</a>
+                                        </li>
+                                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a class="nav-link" th:href="listaUnidades">Lista Unidades</a>
+                                        </li>
+                                        <!--<li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                            </div>
+                                        </li>-->
+                                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a class="nav-link" href="#">Sobre nosotros</a>
+                                        </li>
+                                        <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a class="nav-link" href="#">Contacto</a>
+                                        </li>
+                                        <li class="nav-item-logout pl-4 pl-md-0 ml-0 ml-md-4">
+                                            <a href="#" th:href="@{/logout}" class="nav-link-logout">Cerrar sesión</a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                            </nav>		
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- end navbar -->
+
+        <footer th:fragment="footer">
+            <div class="copyright">
+                <p>&copy Made in 2021</p>
+            </div>
+            <div class="social">
+                <a href="#" class="support">Contactanos</a>
+                <a href="#" class="face">fb</a>
+                <a href="#" class="web">web</a>
+                <a href="#" class="linked">in</a>
+            </div>
+        </footer>
+    </body>
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="../static/js/funcionesPlantilla.js" th:src="@{/js/funcionesPlantilla.js}"></script>
+    -->
+</html>
