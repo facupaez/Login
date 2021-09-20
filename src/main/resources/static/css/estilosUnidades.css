@@ -186,7 +186,6 @@ body {
     transform: translateY(8px) rotate(-45deg);
 }
 .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-    border-color: transparent;
 }
 .nav-link{
     color: #212121 !important;
@@ -320,7 +319,22 @@ body {
     .nav-item:after{
         display: none;
     }
+     .nav-item-logout:after{
+        display: none;
+    }
     .nav-item::before {
+        position: absolute;
+        display: block;
+        top: 15px;
+        left: 0;
+        width: 11px;
+        height: 1px;
+        content: "";
+        border: none;
+        background-color: #000;
+        vertical-align: 0;
+    }
+    .nav-item-logout::before {
         position: absolute;
         display: block;
         top: 15px;

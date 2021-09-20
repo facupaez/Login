@@ -31,7 +31,8 @@ SELECTION STYLING
 /*******************
 BODY STYLING
 *******************/
-*, *::before, *::after {
+
+* {
     margin: 0;
     padding: 0;
     border: 0;
@@ -43,13 +44,6 @@ body {
     font-weight:300;
     text-align: left;
     text-decoration: none;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
 }
 
 #wrapper {
@@ -109,7 +103,7 @@ HEADER
 *******************/
 
 .login-form .header {
-    padding: 40px 30px 20px 30px;
+    padding: 40px 30px 30px 30px;
 }
 
 .login-form .header h1 {
@@ -137,10 +131,57 @@ CONTENT
     padding: 0 30px 25px 30px;
 }
 
+/* Input field */
+.login-form .content .input {
+    width: 220px;
+    padding: 15px 25px;
+
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #9d9e9e;
+    text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+    -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.50);
+}
+
 /* Second input field */
+.login-form .password, login-form .pass-icon {
+    margin-top: 24px;
+}
+
+.login-form .username, login-form .pass-icon {
+    margin-top: -3px;
+}
+
 .login-form .username, .login-form .password, .login-form .pass-icon {
     width: 80%;
 } 
+
+.login-form .select{
+    width: 94%;
+    color: gray;
+}
+
+.login-form .input:hover {
+    background: #dfe9ec;
+    color: #414848;
+}
+
+.login-form .input:focus {
+    background: #dfe9ec;
+    color: #414848;
+
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
+}
 
 .user-icon, .pass-icon {
     width: 46px;
@@ -158,17 +199,17 @@ CONTENT
 }
 
 .user-icon {
-    top:140px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+    top:147px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
     background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
 }
 
 .pass-icon {
-    top:208px;
+    top:221px;
     background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;
 }
 
 /* Animation */
-.input, .user-icon, .pass-icon, .button {
+.input, .user-icon, .pass-icon, .button, .register {
     transition: all 0.5s;
     -moz-transition: all 0.5s;
     -webkit-transition: all 0.5s;
@@ -185,7 +226,7 @@ FOOTER
     display:flex;
     justify-content:center;
     align-items:center;
-    padding: 15px 30px 5px 30px;
+    padding: 25px 30px 40px 30px;
     overflow: auto;
 
     background: #d4dedf;
@@ -194,15 +235,6 @@ FOOTER
     box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
     -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
     -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
-}
-
-.login-form .footer-pass {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding: 5px 30px 10px 30px;
-    overflow: auto;
-    background: #d4dedf;
 }
 
 /* Login button */
@@ -238,6 +270,7 @@ FOOTER
 .login-form .footer .button:focus {
     position: relative;
     bottom: -1px;
+
     background: #56c2e1;
 
     box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
@@ -272,74 +305,6 @@ FOOTER
     width: 298px;
 }
 
-/*textbox edit*/
-
-.custom-field {
-    position: relative;
-    font-size: 14px;
-    border-top: 20px solid transparent;
-    margin-bottom: 5px;
-    --field-padding: 12px;
-}
-
-.custom-field input {
-    border: none;
-    -webkit-appearance: none;
-    -ms-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: #f2f2f2;
-    padding: var(--field-padding);
-    border-radius: 3px;
-    width: 250px;
-    outline: none;
-    font-size: 14px;
-}
-
-.custom-field .placeholder {
-    position: absolute;
-    left: var(--field-padding);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    top: 22px;
-    line-height: 100%;
-    transform: translateY(-50%);
-    color: #aaa;
-    transition: 
-        top 0.3s ease,
-        color 0.3s ease,
-        font-size 0.3s ease;
-}
-
-/* ONE */
-.custom-field.one input {
-    background: none;
-    border: 2px solid #ddd;
-    transition: border-color 0.3s ease;
-}
-
-.custom-field.one input + .placeholder {
-    left: 8px;
-    padding: 0 5px;
-}
-
-.custom-field.one input.dirty,
-.custom-field.one input:not(:placeholder-shown),
-.custom-field.one input:focus {
-    border-color: #222;
-    transition-delay: 0.1s
-}
-
-.custom-field.one input.dirty + .placeholder,
-.custom-field.one input:not(:placeholder-shown) + .placeholder,
-.custom-field.one input:focus + .placeholder {
-    top: 0;
-    font-size: 10px;
-    color: #222;
-    background: #f3f3f3;
-    width: auto;
-}
 
 
 
