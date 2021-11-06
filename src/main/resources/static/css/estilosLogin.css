@@ -109,7 +109,7 @@ HEADER
 *******************/
 
 .login-form .header {
-    padding: 40px 30px 20px 30px;
+    padding: 2rem 0rem 0.5rem 2rem;
 }
 
 .login-form .header h1 {
@@ -134,7 +134,7 @@ CONTENT
 *******************/
 
 .content {
-    padding: 0 30px 25px 30px;
+    padding: 0rem 0rem 0rem 2rem;
 }
 
 /* Second input field */
@@ -158,12 +158,12 @@ CONTENT
 }
 
 .user-icon {
-    top:140px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+    top:120px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
     background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
 }
 
 .pass-icon {
-    top:208px;
+    top:190px;
     background: rgba(65,72,72,0.75) url(../images/pass-icon.png) no-repeat center;
 }
 
@@ -185,7 +185,7 @@ FOOTER
     display:flex;
     justify-content:center;
     align-items:center;
-    padding: 15px 30px 5px 30px;
+    padding: 1rem 0rem 0rem 0rem;
     overflow: auto;
 
     background: #d4dedf;
@@ -200,7 +200,7 @@ FOOTER
     display:flex;
     justify-content:center;
     align-items:center;
-    padding: 5px 30px 10px 30px;
+    padding: 0.5rem 0rem 0.5rem 0rem;
     overflow: auto;
     background: #d4dedf;
 }
@@ -341,14 +341,11 @@ FOOTER
     width: auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+.form-check{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin: 1rem 0rem 1rem 0rem;
+    font-size: 14px;
+    color: #3f9db8;
+}

@@ -1,5 +1,6 @@
 package com.solosoftware.Login.web;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -8,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 //Indica que esta clase es de configuracion y necesita ser cargada durante el inicio del server
 @Configuration
@@ -27,22 +30,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(resources).permitAll()
                 .antMatchers("/", "/login").permitAll()
-                .antMatchers("/listaUsuarios").access("hasRole('SUPER')")
-                .antMatchers("/listaUnidades").access("hasRole('SUPER')")
-                .anyRequest().authenticated()
-                .and()
+                //.antMatchers("/lista*").access("hasRole('SUPER')") //solo permite a roles supervisores
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .defaultSuccessUrl("/listaUnidades")
-                .failureUrl("/login?error=true")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .and()
-                .csrf().disable()
+                    .loginPage("/login")
+                    .permitAll()
+                    .defaultSuccessUrl("/listaUnidades")
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .and()
+                    .csrf().disable()
+               // .rememberMe().key("uniqueAndSecret").rememberMeParameter("remember-me").tokenValiditySeconds(86400)
+                .rememberMe().rememberMeParameter("remember-me").tokenValiditySeconds(86400)
+                    .tokenRepository(persistentTokenRepository())
+                    .userDetailsService(userDetailsService)
+                    .and()
                 .logout()
-                .permitAll()
-                .logoutSuccessUrl("/login?logout");
+                    .permitAll()
+                    .deleteCookies("JSESSIONID")
+                    .logoutSuccessUrl("/login?logout");
     }
 
     BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -68,5 +76,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Setting Service to find User in the database.
         // And Setting PassswordEncoder
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
+    
+    //datasource recordar usario
+    @Autowired
+    DataSource dataSource;
+    
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
+        tokenRepositoryImpl.setDataSource(dataSource);
+        return tokenRepositoryImpl;
     }
 }
