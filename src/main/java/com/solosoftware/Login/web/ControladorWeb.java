@@ -42,9 +42,15 @@ public class ControladorWeb {
     }
 
     // plantilla.html
-    @GetMapping({"plantilla"})
+    @GetMapping({"/plantilla"})
     public String loadPlantilla() {
         return "plantilla";
+    }
+
+    // Recuperar contraseña
+    @GetMapping({"/recuperarPass"})
+    public String loadRecuperarPass() {
+        return "recuperarPass";
     }
 
     // listaUsuarios.html

@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers(resources).permitAll()
-                .antMatchers("/", "/login").permitAll()
+                .antMatchers("/", "/login", "/recuperarPass").permitAll()
                 //.antMatchers("/lista*").access("hasRole('SUPER')") //solo permite a roles supervisores
                     .anyRequest().authenticated()
                     .and()

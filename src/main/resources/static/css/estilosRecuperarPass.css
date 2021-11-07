@@ -1,0 +1,337 @@
+/* 
+    Created on : 6 mar. 2021, 12:21:13
+    Author     : Facu Paez
+*/
+
+/*******************
+LOGIN FORM STYLESHEET
+by: Amit Jakhu
+www.amitjakhu.com
+*******************/
+
+/*******************
+FONTS
+*******************/
+
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+
+/*******************
+SELECTION STYLING
+*******************/
+
+::selection {
+    color: #fff;
+    background: #f676b2; /* Safari */
+}
+::-moz-selection {
+    color: #fff;
+    background: #f676b2; /* Firefox */
+}
+
+/*******************
+BODY STYLING
+*******************/
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    background: url(../images/bg.png) repeat;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    text-align: left;
+    text-decoration: none;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+#wrapper {
+    /* Center wrapper perfectly */
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -140px;
+}
+
+.gradient {
+    /* Center Positioning */
+    width: 600px;
+    height: 600px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -300px;
+    margin-top: -300px;
+
+    /* Fallback */ 
+    background-image: url(../images/gradient.png); 
+    background-repeat: no-repeat; 
+
+    /* CSS3 Gradient */
+    background-image: -webkit-gradient(radial, 0% 0%, 0% 100%, from(rgba(213,246,255,1)), to(rgba(213,246,255,0)));
+    background-image: -webkit-radial-gradient(50% 50%, 40% 40%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -moz-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -ms-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+    background-image: -o-radial-gradient(50% 50%, 50% 50%, rgba(213,246,255,1), rgba(213,246,255,0));
+}
+
+/*******************
+LOGIN FORM
+*******************/
+
+.login-form {
+    width: 330px;
+    margin: 0 auto;
+    position: relative;
+    z-index:5;
+
+    background: #f3f3f3;
+    border: 1px solid #fff;
+    border-radius: 5px;
+
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/*******************
+HEADER
+*******************/
+
+.login-form .header {
+    padding: 2rem 0.5rem 0.5rem 1.5rem;
+}
+
+.login-form .header h1 {
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height:34px;
+    color: #414848;
+    text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+    margin-bottom: 10px;
+}
+
+.login-form .header{
+    font-size: 11px;
+    line-height: 16px;
+    color: #678889;
+    text-shadow: 1px 1px 0 rgba(256,256,256,1.0);
+}
+
+/*******************
+CONTENT
+*******************/
+
+.content {
+    padding: 0rem 0rem 1rem 2rem;
+}
+
+/* Second input field */
+.login-form .username{
+    width: 80%;
+} 
+
+.user-icon{
+    width: 46px;
+    height: 47px;
+    display: block;
+    position: absolute;
+    left: 0px;
+    padding-right: 2px;
+    z-index: 3;
+
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+}
+
+.user-icon {
+    top:118px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+    background: rgba(65,72,72,0.75) url(../images/user-icon.png) no-repeat center;	
+}
+
+/* Animation */
+.input, .user-icon, .button {
+    transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    text-decoration: none;
+}
+
+/*******************
+FOOTER
+*******************/
+
+.login-form .footer {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding: 1rem 0rem 1rem 0rem;
+    overflow: auto;
+
+    background: #d4dedf;
+    border-top: 1px solid #fff;
+
+    box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+    -moz-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+    -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.15);
+}
+
+.login-form .footer-pass {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+    overflow: auto;
+    background: #d4dedf;
+}
+
+/* Login button */
+.login-form .footer .button {
+    float: left;
+    padding: 11px 25px;
+
+    font-family: 'Bree Serif', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
+
+    background: #56c2e1;
+    border: 1px solid #46b3d3;
+    border-radius: 5px;
+    cursor: pointer;
+
+    box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    -moz-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+    -webkit-box-shadow: inset 0 0 2px rgba(256,256,256,0.75);
+}
+
+.login-form .footer .button:hover {
+    background: #3f9db8;
+    border: 1px solid rgba(256,256,256,0.75);
+
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.login-form .footer .button:focus {
+    position: relative;
+    bottom: -1px;
+    background: #56c2e1;
+
+    box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+    -moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+    -webkit-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
+}
+
+.label{
+    font-size: 12px;
+    color: #3f9db8;
+}
+
+.alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    color: #0f5132;
+    background-color: #d1e7dd;
+    border-color: #badbcc;
+    width: 298px;
+}
+
+.alert-danger {
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    width: 298px;
+}
+
+/*textbox edit*/
+
+.custom-field {
+    position: relative;
+    font-size: 14px;
+    border-top: 20px solid transparent;
+    margin-bottom: 5px;
+    --field-padding: 12px;
+}
+
+.custom-field input {
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #f2f2f2;
+    padding: var(--field-padding);
+    border-radius: 3px;
+    width: 250px;
+    outline: none;
+    font-size: 14px;
+}
+
+.custom-field .placeholder {
+    position: absolute;
+    left: var(--field-padding);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    top: 22px;
+    line-height: 100%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 
+        top 0.3s ease,
+        color 0.3s ease,
+        font-size 0.3s ease;
+}
+
+/* ONE */
+.custom-field.one input {
+    background: none;
+    border: 2px solid #ddd;
+    transition: border-color 0.3s ease;
+}
+
+.custom-field.one input + .placeholder {
+    left: 8px;
+    padding: 0 5px;
+}
+
+.custom-field.one input.dirty,
+.custom-field.one input:not(:placeholder-shown),
+.custom-field.one input:focus {
+    border-color: #222;
+    transition-delay: 0.1s
+}
+
+.custom-field.one input.dirty + .placeholder,
+.custom-field.one input:not(:placeholder-shown) + .placeholder,
+.custom-field.one input:focus + .placeholder {
+    top: 0;
+    font-size: 10px;
+    color: #222;
+    background: #f3f3f3;
+    width: auto;
+}

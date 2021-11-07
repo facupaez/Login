@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Login Template</title>
+        <meta charset="UTF-8"/>
+
+        <!--STYLESHEETS-->
+        <link rel="stylesheet" type="text/css" href="../static/css/estilosRecuperarPass.css" th:href="@{/css/estilosRecuperarPass.css}"/>
+
+        <!--SCRIPTS-->
+        <!--
+        <script type="text/javascript" src="js/funciones.js" th:src="@{/js/funciones.js}"></script>
+        -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+        <!--Slider-in icons-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".username").focus(function () {
+                    $(".user-icon").css("left", "-48px");
+                });
+                $(".username").blur(function () {
+                    $(".user-icon").css("left", "0px");
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <section>
+            <!--WRAPPER-->
+            <div id="wrapper">
+
+                <!--SLIDE-IN ICONS-->
+                <div class="user-icon"></div>
+
+                <!--LOGIN FORM-->
+                <form name="login-form" class="login-form" th:action="@{/recuperarPass}" method="post">
+
+                    <!--HEADER-->
+                    <div class="header">
+                        <h1>Recuperar contraseña</h1>
+                        <label class="label">Complete este campo para recuperar su contraseña.</label>
+                    </div>
+
+                    <!--CONTENT-->
+                    <div class="content">
+                        <div class="custom-field one">
+                            <input name="email" type="text" class="username" placeholder=" " onfocus="this.value = ''"/>
+                            <span class="placeholder">Email</span>
+                        </div>
+                        <!-- <div class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</div>-->
+                    </div>
+                    <!--FOOTER-->
+                    <div class="footer">
+                        <input type="submit" value="Recuperar" class="button" />
+                    </div>
+                </form>
+                <!--END FORM-->
+
+            </div>
+            <!--GRADIENT-->
+            <div class="gradient"></div>
+        </section>
+    </body>
+
+</html>
